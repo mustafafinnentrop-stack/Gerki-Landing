@@ -1,0 +1,377 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== AUTH ====================
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ==================== USERS ====================
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          UserRole  @default(CUSTOMER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts Account[]
+  sessions Session[]
+  company  Company?
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+}
+
+// ==================== COMPANY ====================
+
+model Company {
+  id               String      @id @default(cuid())
+  userId           String      @unique
+  name             String
+  legalName        String?
+  taxId            String?
+  address          String?
+  city             String?
+  postalCode       String?
+  country          String      @default("DE")
+  phone            String?
+  website          String?
+  employees        Int?
+  industry         String?
+  setupStatus      SetupStatus @default(PENDING)
+  stripeCustomerId String?     @unique
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscription   Subscription?
+  skills         CompanySkill[]
+  documents      Document[]
+  agents         Agent[]
+  tickets        SupportTicket[]
+  invoices       Invoice[]
+  internetConfig InternetConfig?
+}
+
+enum SetupStatus {
+  PENDING
+  IN_PROGRESS
+  LIVE
+  SUSPENDED
+}
+
+// ==================== SUBSCRIPTION ====================
+
+model Subscription {
+  id                   String             @id @default(cuid())
+  companyId            String             @unique
+  stripeSubscriptionId String?            @unique
+  stripePriceId        String?
+  plan                 PlanType           @default(PERSONAL)
+  status               SubscriptionStatus @default(ACTIVE)
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  cancelAtPeriodEnd    Boolean            @default(false)
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+}
+
+enum PlanType {
+  PERSONAL
+  PRO
+  BUSINESS
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  TRIALING
+  PAUSED
+}
+
+// ==================== SKILLS ====================
+
+model Skill {
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  name            String
+  description     String       
+  longDescription String?      
+  icon            String
+  category        SkillCategory
+  price           Int
+  stripePriceId   String?
+  isActive        Boolean       @default(true)
+  isFeatured      Boolean       @default(false)
+  badge           SkillBadge?
+  sortOrder       Int           @default(0)
+  features        String        @default("[]")
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  companies CompanySkill[]
+}
+
+enum SkillCategory {
+  RECHT
+  FINANZEN
+  HR
+  MARKETING
+  VERTRIEB
+  EINKAUF
+  KOMMUNIKATION
+  PLANUNG
+  IT
+  SONSTIGES
+}
+
+enum SkillBadge {
+  NEU
+  BALD_VERFUEGBAR
+  BELIEBT
+  EMPFOHLEN
+}
+
+model CompanySkill {
+  id                   String      @id @default(cuid())
+  companyId            String
+  skillId              String
+  stripeSubscriptionId String?
+  status               SkillStatus @default(ACTIVE)
+  activatedAt          DateTime    @default(now())
+  deactivatedAt        DateTime?
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  skill   Skill   @relation(fields: [skillId], references: [id])
+
+  @@unique([companyId, skillId])
+}
+
+enum SkillStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
+// ==================== DOCUMENTS ====================
+
+model Document {
+  id           String         @id @default(cuid())
+  companyId    String
+  name         String
+  originalName String
+  mimeType     String
+  size         Int
+  path         String
+  folderId     String?
+  status       DocumentStatus @default(PROCESSING)
+  errorMessage String?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  company Company         @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  folder  DocumentFolder? @relation(fields: [folderId], references: [id])
+}
+
+enum DocumentStatus {
+  PROCESSING
+  ACTIVE
+  ERROR
+  DELETED
+}
+
+model DocumentFolder {
+  id        String   @id @default(cuid())
+  companyId String
+  name      String
+  parentId  String?
+  createdAt DateTime @default(now())
+
+  documents Document[]
+  parent    DocumentFolder?  @relation("FolderTree", fields: [parentId], references: [id])
+  children  DocumentFolder[] @relation("FolderTree")
+}
+
+// ==================== AGENTS ====================
+
+model Agent {
+  id          String      @id @default(cuid())
+  companyId   String
+  name        String
+  description String?
+  type        AgentType
+  status      AgentStatus @default(ACTIVE)
+  config      Json?
+  lastUsedAt  DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+}
+
+enum AgentType {
+  ALLGEMEIN
+  RECHTSBERATER
+  BUCHHALTER
+  HR
+  MARKETING
+  VERTRIEB
+  EINKAUF
+  SUPPORT
+  CUSTOM
+}
+
+enum AgentStatus {
+  ACTIVE
+  INACTIVE
+  CONFIGURING
+}
+
+// ==================== INTERNET CONFIG ====================
+
+model InternetConfig {
+  id        String   @id @default(cuid())
+  companyId String   @unique
+  enabled   Boolean  @default(false)
+  whitelist String   @default("[]")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+}
+
+model InternetLog {
+  id        String   @id @default(cuid())
+  companyId String
+  url       String
+  query     String?
+  timestamp DateTime @default(now())
+}
+
+// ==================== SUPPORT ====================
+
+model SupportTicket {
+  id          String         @id @default(cuid())
+  companyId   String
+  title       String
+  description String        
+  category    TicketCategory
+  status      TicketStatus   @default(OPEN)
+  priority    TicketPriority @default(NORMAL)
+  assignedTo  String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  company  Company         @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  messages TicketMessage[]
+}
+
+enum TicketCategory {
+  TECHNISCH
+  ABRECHNUNG
+  SKILLS
+  AGENTEN
+  SONSTIGES
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum TicketPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}
+
+model TicketMessage {
+  id         String   @id @default(cuid())
+  ticketId   String
+  authorId   String
+  authorName String
+  isAdmin    Boolean  @default(false)
+  content    String  
+  createdAt  DateTime @default(now())
+
+  ticket SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+}
+
+// ==================== INVOICES ====================
+
+model Invoice {
+  id              String        @id @default(cuid())
+  companyId       String
+  stripeInvoiceId String?       @unique
+  amount          Int
+  currency        String        @default("eur")
+  status          InvoiceStatus @default(PENDING)
+  pdfUrl          String?
+  issuedAt        DateTime      @default(now())
+  paidAt          DateTime?
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+}
+
+enum InvoiceStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
