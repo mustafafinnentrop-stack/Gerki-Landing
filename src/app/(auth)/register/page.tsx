@@ -165,6 +165,26 @@ export default function RegisterPage() {
         </button>
       </form>
 
+      <div className="mt-6 flex items-center gap-3">
+        <div className="flex-1 h-px bg-border" />
+        <span className="text-xs text-muted">oder</span>
+        <div className="flex-1 h-px bg-border" />
+      </div>
+
+      <button
+        type="button"
+        onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+        className="mt-4 w-full flex items-center justify-center gap-3 py-2.5 px-4 rounded-lg border border-border bg-surface-2 hover:bg-surface text-foreground font-medium text-sm transition-colors"
+      >
+        <svg width="18" height="18" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M47.5 24.5c0-1.6-.1-3.2-.4-4.7H24v9h13.2c-.6 3-2.3 5.5-4.9 7.2v6h7.9c4.6-4.3 7.3-10.6 7.3-17.5z" fill="#4285F4"/>
+          <path d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.9-6c-2.1 1.4-4.8 2.3-8 2.3-6.1 0-11.3-4.1-13.1-9.7H2.7v6.2C6.7 42.8 14.8 48 24 48z" fill="#34A853"/>
+          <path d="M10.9 28.8A14.4 14.4 0 0 1 10.9 19.2v-6.2H2.7A23.9 23.9 0 0 0 .5 24c0 3.9.9 7.5 2.2 10.8l8.2-6z" fill="#FBBC05"/>
+          <path d="M24 9.5c3.4 0 6.5 1.2 8.9 3.5l6.6-6.6C35.9 2.5 30.4 0 24 0 14.8 0 6.7 5.2 2.7 13.2l8.2 6.2C12.7 13.6 17.9 9.5 24 9.5z" fill="#EA4335"/>
+        </svg>
+        Mit Google registrieren
+      </button>
+
       <p className="mt-4 text-center text-xs text-muted">
         Mit der Registrierung stimmen Sie unseren{" "}
         <Link href="/agb" className="text-primary hover:text-primary-light transition-colors">AGB</Link>{" "}
