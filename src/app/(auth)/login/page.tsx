@@ -8,7 +8,9 @@ import Link from "next/link";
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") ?? "/dashboard";
+  const source = searchParams.get("source");
+  const isAppSource = source === "app";
+  const callbackUrl = isAppSource ? "/app-auth-callback" : (searchParams.get("callbackUrl") ?? "/dashboard");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +33,7 @@ function LoginForm() {
     if (result?.error) {
       setError("E-Mail oder Passwort falsch.");
     } else {
-      router.push(callbackUrl);
+      router.push(isAppSource ? "/app-auth-callback" : callbackUrl);
     }
   }
 
