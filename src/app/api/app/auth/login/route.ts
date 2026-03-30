@@ -89,18 +89,15 @@ export async function POST(req: NextRequest) {
     const rawPlan = user.company?.subscription?.plan ?? "PERSONAL";
     const planMap: Record<string, string> = {
       PERSONAL: "free",
-      PRO: "pro",
-      BUSINESS: "enterprise",
+      PRO: "standard",
+      BUSINESS: "business",
+      ENTERPRISE: "enterprise",
     };
     const plan = planMap[rawPlan] ?? "free";
+    const username = user.name ?? user.email?.split("@")[0] ?? "user";
 
     const token = jwt.sign(
-      {
-        sub: user.id,
-        email: user.email,
-        name: user.name,
-        plan,
-      },
+      { sub: user.id, email: user.email, username, plan },
       secret,
       { expiresIn: "30d", algorithm: "HS256" }
     );
@@ -112,7 +109,7 @@ export async function POST(req: NextRequest) {
         user: {
           id: user.id,
           email: user.email,
-          name: user.name,
+          username,
           plan,
           created_at: user.createdAt,
         },

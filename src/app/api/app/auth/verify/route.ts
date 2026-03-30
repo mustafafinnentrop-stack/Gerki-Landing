@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
         user: {
           id: payload.sub,
           email: payload.email,
-          name: payload.name,
+          username: payload.username,
           plan: payload.plan,
           created_at: payload.iat
             ? new Date(payload.iat * 1000).toISOString()
