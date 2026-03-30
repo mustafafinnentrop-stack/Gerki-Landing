@@ -25,6 +25,6 @@ export function generateAppJWT(user: {
   return jwt.sign(
     { sub: user.id, email: user.email, username, plan: user.plan },
     secret,
-    { expiresIn: "30d", algorithm: "HS256" }
+    { expiresIn: "24h", algorithm: "HS256" }
   );
 }

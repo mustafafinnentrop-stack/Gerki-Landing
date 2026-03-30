@@ -99,7 +99,7 @@ export async function POST(req: NextRequest) {
     const token = jwt.sign(
       { sub: user.id, email: user.email, username, plan },
       secret,
-      { expiresIn: "30d", algorithm: "HS256" }
+      { expiresIn: "24h", algorithm: "HS256" }
     );
 
     return NextResponse.json(
