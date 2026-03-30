@@ -5,11 +5,11 @@ import { useState } from "react";
 const faqs = [
   {
     question: "Was ist Gerki?",
-    answer: "Gerki ist eine Desktop-App, die Claude (Anthropic), ChatGPT (OpenAI) und lokalen Dateizugriff in einer einzigen Oberfläche vereint. Sie installieren Gerki wie jede andere App, verbinden Ihre KI-Konten und können sofort loslegen – mit Zugriff auf Ihre Dateien, Ordner und spezialisierten Skills."
+    answer: "Gerki ist eine Desktop-App für Windows und Mac, die lokale KI (Ollama – läuft komplett auf Ihrem PC, kein Internet nötig) mit optionaler Cloud-KI (Claude, ChatGPT) und lokalem Dateizugriff vereint. Sie installieren Gerki, starten sofort ohne API-Key und haben Zugriff auf spezialisierte Skill-Agenten für Ihren Alltag."
   },
   {
     question: "Welche KI-Modelle unterstützt Gerki?",
-    answer: "Gerki unterstützt aktuell Claude von Anthropic und ChatGPT von OpenAI. Sie benötigen eigene API-Schlüssel für die jeweiligen Dienste. Der Vorteil: Sie wählen für jede Aufgabe das beste Modell – und behalten volle Kontrolle über Kosten und Nutzung."
+    answer: "Im Standard-Plan ist Ollama inklusive – eine lokale KI, die komplett auf Ihrem PC läuft, ohne API-Key und ohne Internetverbindung. Im Business-Plan kommen Claude (Anthropic) und ChatGPT (OpenAI) optional dazu – dafür benötigen Sie eigene API-Schlüssel direkt bei den Anbietern."
   },
   {
     question: "Kann Gerki meine Dateien auf dem PC lesen?",
@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     question: "Was ist N8N und wann kommt die Integration?",
-    answer: "N8N ist ein Open-Source-Automatisierungstool, das über 400 Apps und Dienste verbindet – ähnlich wie Zapier, aber lokal auf Ihrem PC. Die Gerki-N8N-Integration (in Entwicklung) ermöglicht es Ihnen, per Sprache Automatisierungen zu erstellen: z.B. 'Wenn ich eine neue Kundenanfrage per E-Mail bekomme, füge sie automatisch in mein CRM ein.' Da N8N lokal läuft, bleiben alle Daten auf Ihrem PC. Die Integration ist für Q3 2026 geplant und wird für Pro- und Business-Kunden verfügbar sein."
+    answer: "N8N ist ein Open-Source-Automatisierungstool, das über 400 Apps und Dienste verbindet – ähnlich wie Zapier, aber lokal auf Ihrem PC. Die Gerki-N8N-Integration (in Entwicklung) ermöglicht es Ihnen, per Sprache Automatisierungen zu erstellen: z.B. 'Wenn ich eine neue Kundenanfrage per E-Mail bekomme, füge sie automatisch in mein CRM ein.' Da N8N lokal läuft, bleiben alle Daten auf Ihrem PC. Die Integration ist für Q3 2026 geplant und wird für Standard- und Business-Kunden verfügbar sein."
   },
   {
     question: "Welche Hardware brauche ich?",

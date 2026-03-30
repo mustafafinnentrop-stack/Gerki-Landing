@@ -37,19 +37,19 @@ export default function HeroSection() {
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
           Deine KI.{" "}
           <span className="gradient-text">Lokal. Privat.</span>
-          {" "}Kostenlos.
+          {" "}Sicher.
         </h1>
 
         {/* Subline */}
         <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-4 leading-relaxed" style={{ color: "var(--muted)" }}>
           Gerki ist deine persönliche KI-App – powered by Ollama.
           Läuft komplett auf deinem PC, ohne Cloud-Anbindung oder API-Key.
-          Mit Pro: Claude & ChatGPT optional dazu.
+          Mit Business: Claude & ChatGPT optional dazu.
         </p>
 
         {/* Pro note */}
         <p className="text-sm max-w-xl mx-auto mb-10" style={{ color: "rgba(255,255,255,0.35)" }}>
-          * Claude & ChatGPT erfordern eigene API-Zugänge (optional, nur Pro). Lokale KI immer kostenlos.
+          * Claude & ChatGPT erfordern eigene API-Zugänge (optional, nur Business). Lokale KI (Ollama) immer inklusive.
         </p>
 
         {/* CTA Buttons */}
@@ -65,7 +65,7 @@ export default function HeroSection() {
             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
             </svg>
-            Kostenlos herunterladen
+            14 Tage kostenlos testen
           </a>
           <a
             href="#how-it-works"
@@ -152,11 +152,11 @@ export default function HeroSection() {
         {/* Trust badges below hero */}
         <div className="flex flex-wrap justify-center gap-6 mt-12">
           {[
-            "Kostenlos starten",
-            "Kein API-Key nötig",
+            "14 Tage gratis testen",
+            "Kein API-Key nötig (Standard)",
             "Läuft lokal auf deinem PC",
             "DSGVO-konform",
-            "Claude & GPT-4 optional (Pro)",
+            "Claude & GPT-4 optional (Business)",
             "N8N bald verfügbar"
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm" style={{ color: "var(--muted)" }}>
