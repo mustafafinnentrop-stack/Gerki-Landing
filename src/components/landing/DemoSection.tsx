@@ -43,7 +43,7 @@ export default function DemoSection() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="https://github.com/mustafafinnentrop-stack/Gerki-App/archive/refs/heads/main.zip"
+                href="https://github.com/mustafafinnentrop-stack/gerki-app/releases"
                 className="px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:opacity-90 hover:scale-105 flex items-center gap-2"
                 style={{
                   background: "linear-gradient(135deg, #1d6bf3, #1557d0)",
