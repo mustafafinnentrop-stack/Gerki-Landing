@@ -3,9 +3,6 @@ import { stripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import type Stripe from "stripe";
 
-// Disable body parsing so we can verify the raw signature
-export const config = { api: { bodyParser: false } };
-
 const PLAN_MAP: Record<string, "PRO" | "BUSINESS"> = {
   [process.env.STRIPE_PRICE_STANDARD ?? "__standard__"]: "PRO",
   [process.env.STRIPE_PRICE_BUSINESS ?? "__business__"]: "BUSINESS",
