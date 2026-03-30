@@ -55,7 +55,7 @@ export default function HeroSection() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a
-            href="#download"
+            href="https://github.com/mustafafinnentrop-stack/gerki-app/releases"
             className="px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all hover:scale-105 hover:opacity-90 flex items-center gap-2"
             style={{
               background: "linear-gradient(135deg, #1d6bf3, #1557d0)",

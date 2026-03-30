@@ -116,7 +116,7 @@ export default function HowItWorksSection() {
         {/* Bottom CTA */}
         <div className="text-center mt-12">
           <a
-            href="#demo"
+            href="https://github.com/mustafafinnentrop-stack/gerki-app/releases"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
             style={{ background: "linear-gradient(135deg, #1d6bf3, #1557d0)", boxShadow: "0 0 30px rgba(29, 107, 243, 0.3)" }}
           >

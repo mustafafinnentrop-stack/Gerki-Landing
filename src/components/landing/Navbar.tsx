@@ -65,7 +65,7 @@ export default function Navbar() {
             Anmelden
           </Link>
           <a
-            href="#demo"
+            href="https://github.com/mustafafinnentrop-stack/gerki-app/releases"
             className="text-sm px-5 py-2 rounded-lg font-medium text-white transition-all hover:opacity-90 flex items-center gap-1.5"
             style={{ background: "var(--primary)" }}
           >
@@ -107,7 +107,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#demo"
+            href="https://github.com/mustafafinnentrop-stack/gerki-app/releases"
             className="text-center text-sm px-5 py-2 rounded-lg font-medium text-white"
             style={{ background: "var(--primary)" }}
             onClick={() => setMobileOpen(false)}
