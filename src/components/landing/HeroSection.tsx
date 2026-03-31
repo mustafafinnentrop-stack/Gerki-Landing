@@ -30,26 +30,24 @@ export default function HeroSection() {
           }}
         >
           <span className="w-2 h-2 rounded-full inline-block animate-pulse" style={{ background: "var(--accent)" }} />
-          Lokale KI · Kein API-Key · Läuft auf deinem PC
+          8 spezialisierte Agenten · Läuft auf deinem PC · 14 Tage gratis
         </div>
 
         {/* Headline */}
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
-          Deine KI.{" "}
-          <span className="gradient-text">Lokal. Privat.</span>
-          {" "}Sicher.
+          Dein Assistent für den{" "}
+          <span className="gradient-text">deutschen Büroalltag.</span>
         </h1>
 
         {/* Subline */}
         <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-4 leading-relaxed" style={{ color: "var(--muted)" }}>
-          Gerki ist deine persönliche KI-App – powered by Ollama.
-          Läuft komplett auf deinem PC, ohne Cloud-Anbindung oder API-Key.
-          Mit Business: Claude & ChatGPT optional dazu.
+          Behördenpost, Verträge, Rechnungen, E-Mails — Gerki kennt dich, denkt mit und erledigt.
+          Damit du dich auf das Wesentliche konzentrierst.
         </p>
 
-        {/* Pro note */}
+        {/* Secondary note */}
         <p className="text-sm max-w-xl mx-auto mb-10" style={{ color: "rgba(255,255,255,0.35)" }}>
-          * Claude & ChatGPT erfordern eigene API-Zugänge (optional, nur Business). Lokale KI (Ollama) immer inklusive.
+          * Läuft lokal auf deinem PC — deine Daten verlassen dein Gerät nicht. Claude & ChatGPT optional (Business).
         </p>
 
         {/* CTA Buttons */}
@@ -65,7 +63,7 @@ export default function HeroSection() {
             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
             </svg>
-            14 Tage kostenlos testen
+            Jetzt kostenlos testen
           </a>
           <a
             href="#how-it-works"
@@ -94,10 +92,9 @@ export default function HeroSection() {
             <span className="w-3 h-3 rounded-full" style={{ background: "#febc2e" }} />
             <span className="w-3 h-3 rounded-full" style={{ background: "#28c840" }} />
             <span className="ml-4 text-sm" style={{ color: "var(--muted)" }}>Gerki Desktop — Persönlicher Assistent</span>
-            {/* Model indicator */}
             <div className="ml-auto flex items-center gap-2">
-              <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: "rgba(0, 212, 170, 0.15)", color: "var(--accent)", border: "1px solid rgba(0, 212, 170, 0.3)" }}>⚡ Lokal (Ollama)</span>
-              <span className="text-xs px-2 py-0.5 rounded-full font-medium opacity-40" style={{ background: "rgba(29, 107, 243, 0.1)", color: "var(--primary-light)", border: "1px solid rgba(29, 107, 243, 0.2)" }}>Pro: Claude</span>
+              <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: "rgba(0, 212, 170, 0.15)", color: "var(--accent)", border: "1px solid rgba(0, 212, 170, 0.3)" }}>⚡ Läuft lokal</span>
+              <span className="text-xs px-2 py-0.5 rounded-full font-medium opacity-40" style={{ background: "rgba(29, 107, 243, 0.1)", color: "var(--primary-light)", border: "1px solid rgba(29, 107, 243, 0.2)" }}>Business: + Claude</span>
             </div>
           </div>
 
@@ -106,11 +103,11 @@ export default function HeroSection() {
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0"
                 style={{ background: "linear-gradient(135deg, #00d4aa, #1d6bf3)" }}>
-                KI
+                G
               </div>
               <div className="px-4 py-3 rounded-xl text-sm" style={{ background: "var(--surface-2)", color: "var(--foreground)" }}>
                 Ich habe Ihr Schreiben vom Finanzamt analysiert. Sie werden um einen Einkommensnachweis und eine Kontoübersicht der letzten 3 Monate gebeten.
-                <div className="mt-1 text-xs" style={{ color: "var(--accent)" }}>⚡ Lokal generiert – keine Cloud, kein API-Key</div>
+                <div className="mt-1 text-xs" style={{ color: "var(--accent)" }}>⚡ Auf deinem PC berechnet — kein Upload, keine Cloud</div>
               </div>
             </div>
             <div className="flex items-start gap-3 justify-end">
@@ -121,7 +118,7 @@ export default function HeroSection() {
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0"
                 style={{ background: "linear-gradient(135deg, #00d4aa, #1d6bf3)" }}>
-                KI
+                G
               </div>
               <div className="px-4 py-3 rounded-xl text-sm" style={{ background: "var(--surface-2)", color: "var(--foreground)" }}>
                 <div className="mb-2 flex items-center gap-2 text-xs" style={{ color: "var(--muted)" }}>
@@ -138,7 +135,7 @@ export default function HeroSection() {
           <div className="grid grid-cols-3 px-6 py-4" style={{ borderTop: "1px solid var(--border)", background: "var(--surface-2)" }}>
             {[
               { label: "Dokumente indexiert", value: "1.247" },
-              { label: "Aktive Skills", value: "8" },
+              { label: "Aktive Agenten", value: "8" },
               { label: "Gesparte Stunden", value: "47h" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
@@ -153,11 +150,11 @@ export default function HeroSection() {
         <div className="flex flex-wrap justify-center gap-6 mt-12">
           {[
             "14 Tage gratis testen",
-            "Kein API-Key nötig (Standard)",
-            "Läuft lokal auf deinem PC",
-            "DSGVO-konform",
-            "Claude & GPT-4 optional (Business)",
-            "N8N bald verfügbar"
+            "Behördenpost verstehen & beantworten",
+            "Läuft auf deinem PC",
+            "Kein Abo bei OpenAI nötig",
+            "Top-KI-Modelle optional (Business)",
+            "Made in Germany",
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-sm" style={{ color: "var(--muted)" }}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

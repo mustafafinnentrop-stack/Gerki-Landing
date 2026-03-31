@@ -5,11 +5,11 @@ import { useState } from "react";
 const faqs = [
   {
     question: "Was ist Gerki?",
-    answer: "Gerki ist eine Desktop-App für Windows und Mac, die lokale KI (Ollama – läuft komplett auf Ihrem PC, kein Internet nötig) mit optionaler Cloud-KI (Claude, ChatGPT) und lokalem Dateizugriff vereint. Sie installieren Gerki, starten sofort ohne API-Key und haben Zugriff auf spezialisierte Skill-Agenten für Ihren Alltag."
+    answer: "Gerki ist Ihr persönlicher Büromensch für den deutschen Alltag — ein KI-Assistent, der Behördenpost versteht, Verträge prüft, Dokumente findet, Mails schreibt und weiß, wer Sie sind. Gerki läuft auf Ihrem PC, spricht Deutsch und kennt den deutschen Bürokratie-Alltag. Mit 8 spezialisierten Agenten für Recht, Buchhaltung, HR, Marketing, Vertrieb und mehr."
   },
   {
-    question: "Welche KI-Modelle unterstützt Gerki?",
-    answer: "Im Standard-Plan ist Ollama inklusive – eine lokale KI, die komplett auf Ihrem PC läuft, ohne API-Key und ohne Internetverbindung. Im Business-Plan kommen Claude (Anthropic) und ChatGPT (OpenAI) optional dazu – dafür benötigen Sie eigene API-Schlüssel direkt bei den Anbietern."
+    question: "Welche KI-Modelle nutzt Gerki?",
+    answer: "Im Standard-Plan rechnet Gerki vollständig lokal auf Ihrem PC — ohne Cloud, ohne eigenen API-Key. Im Business-Plan können Sie zusätzlich Top-Modelle wie Claude (Anthropic) oder GPT-4 (OpenAI) für komplexere Aufgaben zuschalten. Dafür benötigen Sie eigene API-Keys direkt beim Anbieter. Gerki vermittelt keine Zugänge."
   },
   {
     question: "Kann Gerki meine Dateien auf dem PC lesen?",
@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     question: "Wie sicher sind meine Daten?",
-    answer: "Gerki läuft lokal auf Ihrem PC. Ihre Dateien werden nicht in die Cloud hochgeladen. Nur die Texte, die Sie aktiv an Claude oder ChatGPT schicken, verlassen Ihren PC – verschlüsselt über die offiziellen APIs der Anbieter. Sie entscheiden immer, was gesendet wird."
+    answer: "Ihre Daten verlassen Ihr Gerät nicht — Gerki berechnet alles lokal auf Ihrem PC. Nur wenn Sie aktiv Claude oder ChatGPT nutzen (Business), werden die Texte, die Sie bewusst eintippen, verschlüsselt an die jeweiligen Anbieter übermittelt. Sie entscheiden jederzeit selbst, welches Modell aktiv ist."
   },
   {
     question: "Brauche ich Programmierkenntnisse?",
