@@ -2,9 +2,9 @@ import jwt from "jsonwebtoken";
 
 const PLAN_MAP: Record<string, string> = {
   PERSONAL: "free",
-  PRO: "standard",
-  BUSINESS: "business",
-  ENTERPRISE: "enterprise",
+  PRO: "standard",       // Standard plan (39,90€)
+  BUSINESS: "pro",       // Pro plan (59,90€)
+  ENTERPRISE: "business", // Business plan (89,90€)
 };
 
 export function mapPlan(prismaPlan: string): string {

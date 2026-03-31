@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
   const { plan } = await req.json();
 
-  if (!plan || !["standard", "business"].includes(plan)) {
+  if (!plan || !["standard", "pro", "business"].includes(plan)) {
     return NextResponse.json({ error: "Ungültiger Plan." }, { status: 400 });
   }
 

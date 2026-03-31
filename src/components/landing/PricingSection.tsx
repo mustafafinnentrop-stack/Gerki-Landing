@@ -3,80 +3,66 @@ const plans = [
     name: "Standard",
     price: "39,90",
     period: "/Monat",
-    description: "Für Freelancer & Selbstständige — Behördenpost und Dokumente erledigt.",
+    description: "Dein persönlicher KI-Assistent — für Behördenpost, Dokumente und Alltagsfragen.",
     highlight: false,
     badge: null,
-    trial: "14 Tage kostenlos testen",
     features: [
-      "KI ohne Cloud-Abhängigkeit (Ollama, lokal)",
-      "Openclaw (Desktop-Automatisierung)",
-      "2 Skill-Agenten",
-      "Behördenpost-Assistent",
-      "Dokumenten-Assistent",
-      "Lokale Datenspeicherung",
-      "Standard Support (FAQ)",
+      "2 spezialisierte KI-Agenten",
+      "Behördenpost verstehen & beantworten",
+      "Dokumente auf deinem PC finden",
+      "Desktop-Automatisierung (OpenClaw)",
+      "Standard Support",
     ],
     missing: [
-      "Claude API / ChatGPT",
+      "E-Mail-Manager",
       "Cloud-Sync",
-      "E-Mail Support",
+      "Top-KI-Modelle (Claude, GPT-4)",
     ],
     cta: "14 Tage kostenlos testen",
     ctaHref: "/register?plan=standard",
-    plan: "standard",
+  },
+  {
+    name: "Pro",
+    price: "59,90",
+    period: "/Monat",
+    description: "Wie ein Bürokollege, der nie Urlaub nimmt — für Selbstständige die wachsen wollen.",
+    highlight: true,
+    badge: "Empfohlen",
+    features: [
+      "5 spezialisierte KI-Agenten",
+      "Alles aus Standard",
+      "E-Mail-Manager",
+      "Rechtsberater- & HR-Assistent",
+      "Cloud-Sync (mehrere Geräte)",
+      "E-Mail Support (48h)",
+    ],
+    missing: [
+      "Top-KI-Modelle (Claude, GPT-4)",
+      "Priority Support",
+    ],
+    cta: "14 Tage kostenlos testen",
+    ctaHref: "/register?plan=pro",
   },
   {
     name: "Business",
-    price: "69,90",
+    price: "89,90",
     period: "/Monat",
-    description: "Für Teams & KMU — Recht, HR, Buchhaltung, alles an einem Ort.",
-    highlight: true,
-    badge: "Empfohlen",
-    trial: "14 Tage kostenlos testen",
+    description: "Das vollständige KI-Team für dein Unternehmen — Recht, HR, Buchhaltung, Marketing.",
+    highlight: false,
+    badge: null,
     features: [
-      "Alles aus Standard",
+      "Alle 8 KI-Agenten",
+      "Alles aus Pro",
       "Top-KI-Modelle zuschaltbar (Claude, GPT-4)",
-      "5 Skill-Agenten",
-      "Rechtsberater-Assistent",
-      "E-Mail-Manager",
-      "HR-Assistent",
-      "Buchhaltungs-Assistent",
-      "Cloud-Sync (mehrere Geräte)",
-      "E-Mail Support (48h)",
+      "Buchhaltungs- & Marketing-Assistent",
+      "Multi-User / Team-Accounts",
+      "Priority Support (24h)",
     ],
     missing: [],
     cta: "14 Tage kostenlos testen",
     ctaHref: "/register?plan=business",
-    plan: "business",
-  },
-  {
-    name: "Enterprise",
-    price: "Auf Anfrage",
-    period: "",
-    description: "Für Unternehmen — skalierbare Agenten, maßgeschneidertes Setup.",
-    highlight: false,
-    badge: null,
-    trial: null,
-    features: [
-      "Alles aus Business",
-      "Alle 8 Skill-Agenten",
-      "Multi-User / Team-Accounts",
-      "Individuelle Einrichtung & Onboarding",
-      "Priority Support (24h, Telefon)",
-      "Custom Modell-Integration",
-      "Eigene Server-Option möglich",
-    ],
-    missing: [],
-    cta: "Kontakt aufnehmen",
-    ctaHref: "mailto:enterprise@gerki.app",
-    plan: "enterprise",
   },
 ];
-
-const addon = {
-  price: "9,90",
-  description: "pro extra Agent/Skill · monatlich kündbar",
-};
 
 export default function PricingSection() {
   return (
@@ -90,7 +76,7 @@ export default function PricingSection() {
             14 Tage kostenlos testen.
           </h2>
           <p className="text-xl max-w-2xl mx-auto" style={{ color: "var(--muted)" }}>
-            Keine Einschränkungen im Trial. Danach automatisch zum gewählten Plan – jederzeit kündbar.
+            Keine Einschränkungen im Trial. Danach automatisch zum gewählten Plan — jederzeit kündbar.
           </p>
         </div>
 
@@ -125,27 +111,12 @@ export default function PricingSection() {
 
               <div className="mb-8">
                 <div className="flex items-end gap-1">
-                  {plan.price === "Auf Anfrage" ? (
-                    <span className="text-3xl font-bold">Auf Anfrage</span>
-                  ) : (
-                    <>
-                      <span className="text-5xl font-bold">{plan.price}€</span>
-                      <span className="text-lg mb-1" style={{ color: "var(--muted)" }}>
-                        {plan.period}
-                      </span>
-                    </>
-                  )}
+                  <span className="text-5xl font-bold">{plan.price}€</span>
+                  <span className="text-lg mb-1" style={{ color: "var(--muted)" }}>{plan.period}</span>
                 </div>
-                {plan.trial && (
-                  <p className="text-xs mt-1 font-medium" style={{ color: "var(--accent)" }}>
-                    {plan.trial}
-                  </p>
-                )}
-                {!plan.trial && plan.price !== "Auf Anfrage" && (
-                  <p className="text-xs mt-1" style={{ color: "var(--muted)" }}>
-                    zzgl. MwSt. · monatlich kündbar
-                  </p>
-                )}
+                <p className="text-xs mt-1 font-medium" style={{ color: "var(--accent)" }}>
+                  14 Tage kostenlos testen
+                </p>
               </div>
 
               <ul className="space-y-3 flex-1 mb-8">
@@ -195,18 +166,16 @@ export default function PricingSection() {
         {/* Add-on */}
         <div className="mt-6 px-6 py-4 rounded-xl text-center" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
           <p className="text-sm" style={{ color: "var(--muted)" }}>
-            <span className="font-semibold" style={{ color: "var(--foreground)" }}>Add-on: {addon.price}€</span>{" "}
-            {addon.description}
+            <span className="font-semibold" style={{ color: "var(--foreground)" }}>Add-on: 9,90€</span>{" "}
+            pro extra Agent · monatlich kündbar
           </p>
         </div>
 
         {/* API disclaimer */}
         <div className="mt-4 px-6 py-4 rounded-xl" style={{ background: "rgba(255, 180, 0, 0.05)", border: "1px solid rgba(255, 180, 0, 0.2)" }}>
           <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>
-            <span className="font-semibold" style={{ color: "rgba(255, 180, 0, 0.9)" }}>Hinweis zu Claude & ChatGPT:</span>{" "}
-            Für die Nutzung von Claude (Anthropic) und ChatGPT (OpenAI) benötigst du eigene API-Zugänge direkt bei den Anbietern.
-            Diese Kosten sind <span className="font-semibold">nicht</span> im Gerki-Abo enthalten.
-            Die lokale KI (Ollama) ist komplett kostenlos und benötigt keinen API-Key.
+            <span className="font-semibold" style={{ color: "rgba(255, 180, 0, 0.9)" }}>Hinweis zu Claude & GPT-4 (Business):</span>{" "}
+            Für Top-KI-Modelle benötigst du eigene API-Zugänge direkt bei den Anbietern. Diese Kosten sind nicht im Gerki-Abo enthalten.
           </p>
         </div>
       </div>

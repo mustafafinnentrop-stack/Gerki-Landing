@@ -19,7 +19,7 @@ export default function Footer() {
               <span className="font-bold text-xl">Gerki</span>
             </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
-              Alle KIs. Eine App. Ihr PC. Ollama (lokal), Claude & ChatGPT (optional) in einer Desktop-App.
+              8 spezialisierte KI-Agenten für Ihren Büroalltag — immer verfügbar, ohne extra Abos.
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
@@ -117,7 +117,7 @@ export default function Footer() {
           style={{ borderTop: "1px solid var(--border)" }}
         >
           <p className="text-sm" style={{ color: "var(--muted)" }}>
-            © {currentYear} Gerki – Alle KIs. Eine App. Ihr PC.
+            © {currentYear} Gerki – KI-Agenten für dein Büro.
           </p>
           <div className="flex items-center gap-2">
             <div

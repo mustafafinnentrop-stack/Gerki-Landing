@@ -20,5 +20,6 @@ export const stripe = new Proxy({} as Stripe, {
 
 export const PLAN_PRICE_IDS: Record<string, string | undefined> = {
   standard: process.env.STRIPE_PRICE_STANDARD,
+  pro: process.env.STRIPE_PRICE_PRO,
   business: process.env.STRIPE_PRICE_BUSINESS,
 };

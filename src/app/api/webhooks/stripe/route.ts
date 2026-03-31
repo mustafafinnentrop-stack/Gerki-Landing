@@ -3,12 +3,14 @@ import { stripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import type Stripe from "stripe";
 
-const PLAN_MAP: Record<string, "PRO" | "BUSINESS"> = {
+// DB enum mapping: PRO=Standard(39,90€), BUSINESS=Pro(59,90€), ENTERPRISE=Business(89,90€)
+const PLAN_MAP: Record<string, "PRO" | "BUSINESS" | "ENTERPRISE"> = {
   [process.env.STRIPE_PRICE_STANDARD ?? "__standard__"]: "PRO",
-  [process.env.STRIPE_PRICE_BUSINESS ?? "__business__"]: "BUSINESS",
+  [process.env.STRIPE_PRICE_PRO ?? "__pro__"]: "BUSINESS",
+  [process.env.STRIPE_PRICE_BUSINESS ?? "__business__"]: "ENTERPRISE",
 };
 
-function getPlanFromPriceId(priceId: string): "PRO" | "BUSINESS" | "PERSONAL" {
+function getPlanFromPriceId(priceId: string): "PRO" | "BUSINESS" | "ENTERPRISE" | "PERSONAL" {
   return PLAN_MAP[priceId] ?? "PERSONAL";
 }
 

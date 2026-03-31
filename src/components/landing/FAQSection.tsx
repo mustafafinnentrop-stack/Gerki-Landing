@@ -5,43 +5,43 @@ import { useState } from "react";
 const faqs = [
   {
     question: "Was ist Gerki?",
-    answer: "Gerki ist Ihr persönlicher Büromensch für den deutschen Alltag — ein KI-Assistent, der Behördenpost versteht, Verträge prüft, Dokumente findet, Mails schreibt und weiß, wer Sie sind. Gerki läuft auf Ihrem PC, spricht Deutsch und kennt den deutschen Bürokratie-Alltag. Mit 8 spezialisierten Agenten für Recht, Buchhaltung, HR, Marketing, Vertrieb und mehr."
+    answer: "Gerki ist Ihr persönlicher KI-Assistent für den Büroalltag — mit 8 spezialisierten Agenten für Recht, Buchhaltung, HR, E-Mail, Marketing und mehr. Sie installieren Gerki einmal auf Ihrem Desktop und haben sofort Zugriff auf Assistenten, die Behördenpost verstehen, Verträge prüfen, Dokumente finden und Antworten vorbereiten."
   },
   {
-    question: "Welche KI-Modelle nutzt Gerki?",
-    answer: "Im Standard-Plan rechnet Gerki vollständig lokal auf Ihrem PC — ohne Cloud, ohne eigenen API-Key. Im Business-Plan können Sie zusätzlich Top-Modelle wie Claude (Anthropic) oder GPT-4 (OpenAI) für komplexere Aufgaben zuschalten. Dafür benötigen Sie eigene API-Keys direkt beim Anbieter. Gerki vermittelt keine Zugänge."
+    question: "Welche KI-Agenten sind in Gerki enthalten?",
+    answer: "Je nach Plan stehen 2, 5 oder alle 8 Agenten zur Verfügung: Behördenpost-Assistent, Dokumente-Assistent, Rechtsberater, HR-Assistent, Buchhaltungs-Assistent, E-Mail-Manager, Marketing-Assistent und Vertriebsassistent. Jeder Agent ist auf seinen Bereich spezialisiert — kein generischer Chatbot."
   },
   {
-    question: "Kann Gerki meine Dateien auf dem PC lesen?",
-    answer: "Ja – das ist eine der Kernfunktionen. Sie geben Gerki Zugriff auf bestimmte Ordner (z. B. Dokumente, Downloads). Gerki durchsucht diese Ordner, liest relevante Dateien und nutzt sie im Gespräch. Beispiel: Sie erhalten einen Behördenbrief, und Gerki findet automatisch die benötigten Nachweise auf Ihrem PC."
+    question: "Was unterscheidet Standard, Pro und Business?",
+    answer: "Standard (39,90€) gibt Ihnen 2 Agenten für Behördenpost und Dokumente — ideal für Privatpersonen und Freelancer. Pro (59,90€) bringt 5 Agenten inkl. E-Mail-Manager, Rechtsberater, HR und Cloud-Sync — für Selbstständige und kleine Teams. Business (89,90€) schaltet alle 8 Agenten frei, erlaubt Top-KI-Modelle und unterstützt Teams."
   },
   {
-    question: "Wie sicher sind meine Daten?",
-    answer: "Ihre Daten verlassen Ihr Gerät nicht — Gerki berechnet alles lokal auf Ihrem PC. Nur wenn Sie aktiv Claude oder ChatGPT nutzen (Business), werden die Texte, die Sie bewusst eintippen, verschlüsselt an die jeweiligen Anbieter übermittelt. Sie entscheiden jederzeit selbst, welches Modell aktiv ist."
+    question: "Kann Gerki meine Dateien auf dem PC finden?",
+    answer: "Ja — das ist eine der Kernfunktionen. Sie geben Gerki Zugriff auf bestimmte Ordner (z. B. Dokumente, Downloads). Gerki durchsucht diese Ordner, liest relevante Dateien und nutzt sie im Gespräch. Beispiel: 'Wo ist die Rechnung von der Hausverwaltung?' — Gerki findet sie."
   },
   {
     question: "Brauche ich Programmierkenntnisse?",
-    answer: "Nein. Gerki ist für alle gemacht – nicht nur für Techniker. Sie installieren die App, geben Ihre API-Schlüssel ein und legen los. Skills aktivieren Sie per Klick. Keine Konfiguration, keine Kommandozeile."
+    answer: "Nein. Gerki ist für alle gemacht — nicht nur für Techniker. Sie installieren die App, richten Ihre Agenten per Klick ein und legen los. Keine Konfiguration, keine Kommandozeile, keine technischen Vorkenntnisse nötig."
   },
   {
-    question: "Was ist ein API-Schlüssel und wo bekomme ich ihn?",
-    answer: "Ein API-Schlüssel ist ein persönliches Passwort, das Sie bei Anthropic (für Claude) oder OpenAI (für ChatGPT) kostenlos erstellen können. Gerki führt Sie beim ersten Start durch den Prozess. Kosten entstehen nur durch Ihre direkte Nutzung der KI-Dienste."
+    question: "Was sind Top-KI-Modelle und brauche ich die?",
+    answer: "Im Standard- und Pro-Plan läuft Gerki ohne externe KI-Dienste — kein weiteres Abo nötig. Im Business-Plan können Sie optional Top-Modelle wie Claude (Anthropic) oder GPT-4 (OpenAI) für besonders komplexe Aufgaben zuschalten. Dafür benötigen Sie eigene API-Keys direkt beim Anbieter. Typische Kosten: 5–20€/Monat je nach Nutzung."
   },
   {
-    question: "Was kostet die Nutzung von Claude und ChatGPT – ist das im Abo enthalten?",
-    answer: "Nein – das Gerki-Abo deckt die App selbst, die Skills und den Support ab. Die KI-Modelle (Claude von Anthropic, ChatGPT von OpenAI) werden über Ihre eigenen API-Zugänge direkt beim jeweiligen Anbieter abgerechnet. Typische Kosten: 5–20€/Monat je nach Nutzungsintensität. Bei leichter Nutzung oft unter 5€. Gerki vermittelt keine KI-Zugänge und erhält keine Provision. Dieser Hinweis findet sich auch bei allen Preisplänen mit einem *."
+    question: "Was ist Desktop-Automatisierung (OpenClaw)?",
+    answer: "OpenClaw ist Gerkis Automatisierungs-Engine: Sie kann Ihren Bildschirm lesen, Formulare ausfüllen, in Programmen klicken und Aufgaben selbstständig erledigen. Beispiel: Gerki füllt Ihr Elster-Formular automatisch aus — Sie müssen es nur noch absenden."
   },
   {
     question: "Was ist N8N und wann kommt die Integration?",
-    answer: "N8N ist ein Open-Source-Automatisierungstool, das über 400 Apps und Dienste verbindet – ähnlich wie Zapier, aber lokal auf Ihrem PC. Die Gerki-N8N-Integration (in Entwicklung) ermöglicht es Ihnen, per Sprache Automatisierungen zu erstellen: z.B. 'Wenn ich eine neue Kundenanfrage per E-Mail bekomme, füge sie automatisch in mein CRM ein.' Da N8N lokal läuft, bleiben alle Daten auf Ihrem PC. Die Integration ist für Q3 2026 geplant und wird für Standard- und Business-Kunden verfügbar sein."
+    answer: "N8N ist ein Automatisierungstool, das über 400 Apps verbindet. Die Gerki-Integration ermöglicht Automatisierungen per Sprache: 'Wenn ich eine neue Kundenanfrage per E-Mail bekomme, füge sie ins CRM ein.' Die Integration ist für Q3 2026 geplant und für alle Pläne verfügbar."
   },
   {
     question: "Welche Hardware brauche ich?",
-    answer: "Gerki läuft auf jedem normalen Windows- oder Mac-Computer. Keine Server, keine spezielle Hardware. Als Richtwert: ein PC mit 8 GB RAM und moderner CPU reicht vollständig aus. Gerki ist als leichte Desktop-App konzipiert."
+    answer: "Gerki läuft auf jedem normalen Windows- oder Mac-Computer. Kein Server, keine spezielle Hardware. Als Richtwert: 8 GB RAM und eine moderne CPU reichen vollständig aus."
   },
   {
-    question: "Kann ich Skills jederzeit dazu- oder abbuchen?",
-    answer: "Ja. Skills können Sie jederzeit über das Gerki-Dashboard aktivieren oder deaktivieren – ohne Neuinstallation. Die Abrechnung erfolgt monatlich und wird automatisch angepasst. Keine Mindestlaufzeit für einzelne Skills."
+    question: "Kann ich jederzeit kündigen?",
+    answer: "Ja. Alle Pläne sind monatlich kündbar — ohne Mindestlaufzeit. Nach dem 14-tägigen Trial läuft Ihr Abo monatlich, bis Sie es über das Dashboard kündigen. Einzelne Agenten können Sie auch ohne Kündigung des Gesamtplans deaktivieren."
   },
 ];
 
