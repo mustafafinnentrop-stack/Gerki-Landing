@@ -86,14 +86,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const rawPlan = user.company?.subscription?.plan ?? "PERSONAL";
-    const planMap: Record<string, string> = {
-      PERSONAL: "free",
-      PRO: "standard",
-      BUSINESS: "business",
-      ENTERPRISE: "enterprise",
-    };
-    const plan = planMap[rawPlan] ?? "free";
+    // Determine plan: active subscription > trial window > expired
+    const sub = user.company?.subscription;
+    let plan = "expired";
+    if (sub && (sub.status === "ACTIVE" || sub.status === "TRIALING")) {
+      const map: Record<string, string> = { PRO: "standard", BUSINESS: "pro", ENTERPRISE: "business" };
+      plan = map[sub.plan] ?? "standard";
+    } else {
+      const ref = user.company?.createdAt ?? user.createdAt;
+      const daysSince = Math.floor((Date.now() - new Date(ref).getTime()) / 86_400_000);
+      plan = daysSince <= 14 ? "trial" : "expired";
+    }
     const username = user.name ?? user.email?.split("@")[0] ?? "user";
 
     const token = jwt.sign(

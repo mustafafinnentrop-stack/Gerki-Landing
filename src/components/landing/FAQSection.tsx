@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     question: "Was sind Top-KI-Modelle und brauche ich die?",
-    answer: "Im Standard- und Pro-Plan läuft Gerki ohne externe KI-Dienste — kein weiteres Abo nötig. Im Business-Plan können Sie optional Top-Modelle wie Claude (Anthropic) oder GPT-4 (OpenAI) für besonders komplexe Aufgaben zuschalten. Dafür benötigen Sie eigene API-Keys direkt beim Anbieter. Typische Kosten: 5–20€/Monat je nach Nutzung."
+    answer: "Im Standard- und Pro-Plan arbeitet Gerki mit einer eingebauten KI — kein extra Abo nötig. Im Business-Plan sind Top-Modelle wie Claude und GPT-4 über Gerkis eigenen API-Zugang inklusive — kein Account bei OpenAI oder Anthropic erforderlich. Monatliche Token-Limits gelten je nach Plan."
   },
   {
     question: "Was ist Desktop-Automatisierung (OpenClaw)?",

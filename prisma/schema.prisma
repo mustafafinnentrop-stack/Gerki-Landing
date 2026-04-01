@@ -65,6 +65,8 @@ model User {
   accounts Account[]
   sessions Session[]
   company  Company?
+  conversations Conversation[]
+  usageRecords  UsageRecord[]
 }
 
 enum UserRole {
@@ -352,6 +354,46 @@ model TicketMessage {
   createdAt  DateTime @default(now())
 
   ticket SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+}
+
+// ==================== CLOUD SYNC ====================
+
+model Conversation {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String?
+  agentType String?
+  deviceId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages SyncMessage[]
+}
+
+model SyncMessage {
+  id             String   @id @default(cuid())
+  conversationId String
+  role           String
+  content        String
+  tokenCount     Int?
+  createdAt      DateTime @default(now())
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+}
+
+// ==================== USAGE TRACKING ====================
+
+model UsageRecord {
+  id           String   @id @default(cuid())
+  userId       String
+  model        String
+  tokensInput  Int      @default(0)
+  tokensOutput Int      @default(0)
+  month        String
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 // ==================== INVOICES ====================

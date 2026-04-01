@@ -171,11 +171,10 @@ export default function PricingSection() {
           </p>
         </div>
 
-        {/* API disclaimer */}
-        <div className="mt-4 px-6 py-4 rounded-xl" style={{ background: "rgba(255, 180, 0, 0.05)", border: "1px solid rgba(255, 180, 0, 0.2)" }}>
+        <div className="mt-4 px-6 py-4 rounded-xl" style={{ background: "rgba(0, 212, 170, 0.05)", border: "1px solid rgba(0, 212, 170, 0.2)" }}>
           <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>
-            <span className="font-semibold" style={{ color: "rgba(255, 180, 0, 0.9)" }}>Hinweis zu Claude & GPT-4 (Business):</span>{" "}
-            Für Top-KI-Modelle benötigst du eigene API-Zugänge direkt bei den Anbietern. Diese Kosten sind nicht im Gerki-Abo enthalten.
+            <span className="font-semibold" style={{ color: "var(--accent)" }}>Top-KI-Modelle im Business-Plan:</span>{" "}
+            Claude & GPT-4 sind über Gerkis geteilten API-Zugang inklusive — kein eigenes Konto bei OpenAI oder Anthropic nötig. Token-Limits gelten pro Monat.
           </p>
         </div>
       </div>
