@@ -10,6 +10,13 @@ const stats = [
 
 const quickActions = [
   {
+    label: "KI-Chat öffnen",
+    description: "Direkt mit Gerki chatten",
+    href: "/chat",
+    icon: "💬",
+    color: "from-accent/10 to-accent/5 border-accent/20",
+  },
+  {
     label: "Skills aktivieren",
     description: "Erweitern Sie Ihre KI-Fähigkeiten",
     href: "/dashboard/skills",
@@ -21,14 +28,14 @@ const quickActions = [
     description: "KI-Agenten für Ihre Prozesse",
     href: "/dashboard/agenten",
     icon: "🤖",
-    color: "from-accent/10 to-accent/5 border-accent/20",
+    color: "from-purple-500/10 to-purple-600/5 border-purple-500/20",
   },
   {
     label: "Einstellungen",
     description: "Firmenprofil vervollständigen",
     href: "/dashboard/einstellungen",
     icon: "⚙️",
-    color: "from-purple-500/10 to-purple-600/5 border-purple-500/20",
+    color: "from-gray-500/10 to-gray-600/5 border-gray-500/20",
   },
 ];
 
@@ -64,7 +71,7 @@ export default function DashboardPage() {
         <h3 className="text-sm font-semibold text-muted uppercase tracking-wider mb-4">
           Schnellzugriff
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {quickActions.map((action) => (
             <Link
               key={action.href}
