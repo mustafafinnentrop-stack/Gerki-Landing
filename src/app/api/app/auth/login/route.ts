@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
     const sub = user.company?.subscription;
     let plan = "expired";
     if (sub && (sub.status === "ACTIVE" || sub.status === "TRIALING")) {
-      const map: Record<string, string> = { PRO: "standard", BUSINESS: "pro", ENTERPRISE: "business" };
+      const map: Record<string, string> = { STANDARD: "standard", PRO: "pro", BUSINESS: "business" };
       plan = map[sub.plan] ?? "standard";
     } else {
       const ref = user.company?.createdAt ?? user.createdAt;

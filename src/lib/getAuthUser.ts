@@ -40,9 +40,9 @@ export function resolveplan(user: {
   const sub = user.company?.subscription;
   if (sub && (sub.status === "ACTIVE" || sub.status === "TRIALING")) {
     const map: Record<string, string> = {
-      PRO: "standard",
-      BUSINESS: "pro",
-      ENTERPRISE: "business",
+      STANDARD: "standard",
+      PRO:      "pro",
+      BUSINESS: "business",
     };
     return map[sub.plan] ?? "standard";
   }

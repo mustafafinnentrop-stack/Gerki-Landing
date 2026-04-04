@@ -119,7 +119,7 @@ model Subscription {
   companyId            String             @unique
   stripeSubscriptionId String?            @unique
   stripePriceId        String?
-  plan                 PlanType           @default(PERSONAL)
+  plan                 PlanType           @default(TRIAL)
   status               SubscriptionStatus @default(ACTIVE)
   currentPeriodStart   DateTime?
   currentPeriodEnd     DateTime?
@@ -131,10 +131,10 @@ model Subscription {
 }
 
 enum PlanType {
-  PERSONAL
+  TRIAL
+  STANDARD
   PRO
   BUSINESS
-  ENTERPRISE
 }
 
 enum SubscriptionStatus {

@@ -3,15 +3,14 @@ import { stripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import type Stripe from "stripe";
 
-// DB enum mapping: PRO=Standard(39,90€), BUSINESS=Pro(59,90€), ENTERPRISE=Business(89,90€)
-const PLAN_MAP: Record<string, "PRO" | "BUSINESS" | "ENTERPRISE"> = {
-  [process.env.STRIPE_PRICE_STANDARD ?? "__standard__"]: "PRO",
-  [process.env.STRIPE_PRICE_PRO ?? "__pro__"]: "BUSINESS",
-  [process.env.STRIPE_PRICE_BUSINESS ?? "__business__"]: "ENTERPRISE",
+const PLAN_MAP: Record<string, "STANDARD" | "PRO" | "BUSINESS"> = {
+  [process.env.STRIPE_PRICE_STANDARD ?? "__standard__"]: "STANDARD",
+  [process.env.STRIPE_PRICE_PRO ?? "__pro__"]: "PRO",
+  [process.env.STRIPE_PRICE_BUSINESS ?? "__business__"]: "BUSINESS",
 };
 
-function getPlanFromPriceId(priceId: string): "PRO" | "BUSINESS" | "ENTERPRISE" | "PERSONAL" {
-  return PLAN_MAP[priceId] ?? "PERSONAL";
+function getPlanFromPriceId(priceId: string): "STANDARD" | "PRO" | "BUSINESS" | "TRIAL" {
+  return PLAN_MAP[priceId] ?? "TRIAL";
 }
 
 async function upsertSubscription(
@@ -114,7 +113,7 @@ export async function POST(req: NextRequest) {
         const sub = event.data.object as Stripe.Subscription;
         await prisma.subscription.updateMany({
           where: { stripeSubscriptionId: sub.id },
-          data: { status: "CANCELED", plan: "PERSONAL", cancelAtPeriodEnd: false },
+          data: { status: "CANCELED", plan: "TRIAL", cancelAtPeriodEnd: false },
         });
         break;
       }

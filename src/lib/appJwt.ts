@@ -1,14 +1,15 @@
 import jwt from "jsonwebtoken";
 
+// DB PlanType enum → JWT plan string (matches Electron app expectations)
 const PLAN_MAP: Record<string, string> = {
-  PERSONAL: "free",
-  PRO: "standard",       // Standard plan (39,90€)
-  BUSINESS: "pro",       // Pro plan (59,90€)
-  ENTERPRISE: "business", // Business plan (89,90€)
+  TRIAL:    "trial",
+  STANDARD: "standard",
+  PRO:      "pro",
+  BUSINESS: "business",
 };
 
 export function mapPlan(prismaPlan: string): string {
-  return PLAN_MAP[prismaPlan] ?? "free";
+  return PLAN_MAP[prismaPlan] ?? "trial";
 }
 
 export function generateAppJWT(user: {
