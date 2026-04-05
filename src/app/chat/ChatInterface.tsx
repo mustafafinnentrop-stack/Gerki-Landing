@@ -54,8 +54,10 @@ export default function ChatInterface({ user }: { user: { name: string; email: s
           if (raw === "[DONE]") continue;
           try {
             const data = JSON.parse(raw);
-            if (data.type === "content_block_delta" && data.delta?.type === "text_delta") {
-              full += data.delta.text;
+            // OpenAI/Groq format: choices[0].delta.content
+            const delta = data.choices?.[0]?.delta?.content;
+            if (delta) {
+              full += delta;
               setMessages((prev) => {
                 const updated = [...prev];
                 updated[updated.length - 1] = { role: "assistant", content: full };
@@ -88,7 +90,10 @@ export default function ChatInterface({ user }: { user: { name: string; email: s
             G
           </div>
           <div>
-            <div className="font-semibold text-sm">Gerki Chat</div>
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-sm">Gerki KI-Chat</span>
+              <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: "rgba(0,212,170,0.15)", color: "var(--accent)", border: "1px solid rgba(0,212,170,0.3)" }}>⚡ Llama 3.3 70B</span>
+            </div>
             <div className="text-xs" style={{ color: "var(--muted)" }}>{user.email}</div>
           </div>
         </div>

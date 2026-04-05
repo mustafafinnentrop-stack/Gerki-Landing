@@ -9,6 +9,9 @@ const CORS = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
+// Best available open-source model via Groq (Llama 3.3 70B — equivalent to best Ollama model)
+const MODEL = "llama-3.3-70b-versatile";
+
 function currentMonth() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
@@ -19,7 +22,7 @@ export async function OPTIONS() {
 }
 
 // POST /api/app/chat/stream
-// Body: { messages: [{role, content}], model?, conversationId?, agentType? }
+// Body: { messages: [{role, content}], conversationId? }
 export async function POST(req: NextRequest) {
   const user = await getAuthUser(req);
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401, headers: CORS });
@@ -43,78 +46,81 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) {
-    return NextResponse.json({ error: "Chat-Service nicht konfiguriert." }, { status: 503, headers: CORS });
+    return NextResponse.json({ error: "Chat-Service nicht konfiguriert. Bitte GROQ_API_KEY setzen." }, { status: 503, headers: CORS });
   }
 
-  const { messages, model = "claude-sonnet-4-6", conversationId } = await req.json();
+  const { messages, conversationId } = await req.json();
   if (!messages?.length) {
     return NextResponse.json({ error: "messages required" }, { status: 400, headers: CORS });
   }
 
-  // Build system prompt based on plan
   const systemPrompt = `Du bist Gerki, ein spezialisierter KI-Assistent für den deutschen Büroalltag.
 Du hilfst mit Behördenpost, Verträgen, Rechnungen, E-Mails und anderen Büroaufgaben.
 Antworte immer auf Deutsch, präzise und praxisorientiert.
-Aktueller Plan des Nutzers: ${plan}.`;
+Heute ist der ${new Date().toLocaleDateString("de-DE")}.`;
 
-  const anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
+  // Groq API — OpenAI-compatible format, runs Llama 3.3 70B
+  const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
-      "x-api-key": apiKey,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
+      "Authorization": `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model,
+      model: MODEL,
+      messages: [
+        { role: "system", content: systemPrompt },
+        ...messages.slice(-20),
+      ],
       max_tokens: 2048,
-      system: systemPrompt,
       stream: true,
-      messages: messages.slice(-20), // last 20 messages for context
     }),
   });
 
-  if (!anthropicRes.ok) {
-    const err = await anthropicRes.text();
-    console.error("Anthropic error:", err);
+  if (!groqRes.ok) {
+    const err = await groqRes.text();
+    console.error("Groq error:", err);
     return NextResponse.json({ error: "KI-Anfrage fehlgeschlagen." }, { status: 502, headers: CORS });
   }
 
-  // Track usage after stream completes using transform stream
+  const userId = user.id;
   let inputTokens = 0;
   let outputTokens = 0;
-  const userId = user.id;
-  const usedModel = model;
 
+  // Parse OpenAI-format SSE stream and track token usage from final chunk
   const transform = new TransformStream({
     transform(chunk, controller) {
       controller.enqueue(chunk);
-      // Parse SSE lines for token counts
       const text = new TextDecoder().decode(chunk);
       for (const line of text.split("\n")) {
         if (!line.startsWith("data: ")) continue;
+        const raw = line.slice(6).trim();
+        if (raw === "[DONE]") continue;
         try {
-          const data = JSON.parse(line.slice(6));
-          if (data.type === "message_start") inputTokens = data.message?.usage?.input_tokens ?? 0;
-          if (data.type === "message_delta") outputTokens = data.usage?.output_tokens ?? 0;
-        } catch { /* ignore parse errors */ }
+          const data = JSON.parse(raw);
+          // Groq sends usage in the last chunk
+          if (data.usage) {
+            inputTokens = data.usage.prompt_tokens ?? 0;
+            outputTokens = data.usage.completion_tokens ?? 0;
+          }
+        } catch { /* ignore */ }
       }
     },
     async flush() {
       if (inputTokens + outputTokens > 0) {
         await prisma.usageRecord.create({
-          data: { userId, model: usedModel, tokensInput: inputTokens, tokensOutput: outputTokens, month: currentMonth() },
+          data: { userId, model: MODEL, tokensInput: inputTokens, tokensOutput: outputTokens, month: currentMonth() },
         });
-        // Save assistant message to conversation if provided
-        if (conversationId) {
-          await prisma.conversation.update({ where: { id: conversationId }, data: { updatedAt: new Date() } });
-        }
+      }
+      if (conversationId) {
+        await prisma.conversation.update({ where: { id: conversationId }, data: { updatedAt: new Date() } }).catch(() => {});
       }
     },
   });
 
-  return new NextResponse(anthropicRes.body!.pipeThrough(transform), {
+  return new NextResponse(groqRes.body!.pipeThrough(transform), {
     headers: {
       ...CORS,
       "Content-Type": "text/event-stream",
