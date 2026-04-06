@@ -69,9 +69,9 @@ const features = [
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "DSGVO-konform",
-    description: "Made in Germany. Alle Daten bleiben auf Ihrem PC. Keine Cloud, keine externen Server – vollständige Datensouveränität.",
-    highlight: "100% Ihre Daten",
+    title: "Made in Germany",
+    description: "Entwickelt in Deutschland für den Mittelstand. Kein eigener API-Key nötig – Llama, Claude & GPT-4 sind im Abo enthalten.",
+    highlight: "Kein API-Key nötig",
     comingSoon: false,
   },
   {

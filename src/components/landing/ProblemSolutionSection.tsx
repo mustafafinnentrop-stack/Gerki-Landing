@@ -1,18 +1,18 @@
 const problems = [
   "Ständig zwischen ChatGPT, Claude & Co. wechseln",
-  "Kein KI-Tool kennt Ihre lokalen Dateien",
-  "Sensible Daten gehen in die Cloud – DSGVO-Risiko",
-  "Behördenbriefe, Formulare, Nachweise – alles manuell",
-  "Jedes Gespräch beginnt wieder von vorne",
+  "Kein KI-Tool kennt deine Branche oder Arbeitsweise",
+  "Behördenbriefe, Verträge, Formulare – alles manuell",
+  "Jedes Gespräch beginnt wieder von vorne – kein Kontext",
+  "Teure API-Keys bei OpenAI & Anthropic selbst buchen",
   "Keine Automatisierung ohne Programmierkenntnisse",
 ];
 
 const solutions = [
-  "Eine App für alle KI-Modelle – Claude, ChatGPT und mehr",
-  "Greift direkt auf Ihre Ordner & Dateien zu",
-  "Läuft lokal auf Ihrem PC – Ihre Daten bleiben bei Ihnen",
+  "8 spezialisierte KI-Agenten – einer für jede Aufgabe",
+  "Buchhalter, Jurist, Übersetzer & Co. – direkt einsatzbereit",
   "Findet Dokumente automatisch und schreibt Antworten",
-  "Dauerhaftes Gedächtnis für all Ihre Informationen",
+  "Cloud-Sync: Gespräche auf allen Geräten verfügbar",
+  "Kein eigener API-Key nötig – alles im Abo enthalten",
   "Einfach installieren wie jede andere App – in 2 Minuten",
 ];
 
