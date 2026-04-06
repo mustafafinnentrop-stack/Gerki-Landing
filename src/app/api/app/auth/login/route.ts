@@ -86,17 +86,23 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const plan = user.company?.subscription?.plan ?? "PERSONAL";
+    // Determine plan: active subscription > trial window > expired
+    const sub = user.company?.subscription;
+    let plan = "expired";
+    if (sub && (sub.status === "ACTIVE" || sub.status === "TRIALING")) {
+      const map: Record<string, string> = { STANDARD: "standard", PRO: "pro", BUSINESS: "business" };
+      plan = map[sub.plan] ?? "standard";
+    } else {
+      const ref = user.company?.createdAt ?? user.createdAt;
+      const daysSince = Math.floor((Date.now() - new Date(ref).getTime()) / 86_400_000);
+      plan = daysSince <= 14 ? "trial" : "expired";
+    }
+    const username = user.name ?? user.email?.split("@")[0] ?? "user";
 
     const token = jwt.sign(
-      {
-        sub: user.id,
-        email: user.email,
-        username: user.name,
-        plan,
-      },
+      { sub: user.id, email: user.email, username, plan },
       secret,
-      { expiresIn: "30d", algorithm: "HS256" }
+      { expiresIn: "24h", algorithm: "HS256" }
     );
 
     return NextResponse.json(
@@ -106,7 +112,7 @@ export async function POST(req: NextRequest) {
         user: {
           id: user.id,
           email: user.email,
-          username: user.name,
+          username,
           plan,
           created_at: user.createdAt,
         },

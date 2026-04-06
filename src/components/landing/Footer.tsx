@@ -19,7 +19,7 @@ export default function Footer() {
               <span className="font-bold text-xl">Gerki</span>
             </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
-              Alle KIs. Eine App. Ihr PC. Claude, ChatGPT und lokaler Dateizugriff in einer Desktop-App.
+              8 spezialisierte KI-Agenten für Ihren Büroalltag — immer verfügbar, ohne extra Abos.
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
@@ -100,18 +100,12 @@ export default function Footer() {
               ))}
             </ul>
             <div className="mt-6 space-y-1">
-              <a href="mailto:info@gerki.de" className="flex items-center gap-2 text-sm transition-colors hover:text-white" style={{ color: "var(--muted)" }}>
+              <a href="mailto:info@gerki.app" className="flex items-center gap-2 text-sm transition-colors hover:text-white" style={{ color: "var(--muted)" }}>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <rect x="1" y="3" width="12" height="9" rx="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M1 4l6 4 6-4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                info@gerki.de
-              </a>
-              <a href="tel:+49800000000" className="flex items-center gap-2 text-sm transition-colors hover:text-white" style={{ color: "var(--muted)" }}>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 9.5v2a1.5 1.5 0 01-1.6 1.5A13.9 13.9 0 011.5 3.6 1.5 1.5 0 013 2h2a1.5 1.5 0 011.5 1.3 9 9 0 00.5 2 1.5 1.5 0 01-.4 1.6L5.9 7.5a11 11 0 004.6 4.6l.6-.7a1.5 1.5 0 011.6-.4 9 9 0 002 .5A1.5 1.5 0 0112 9.5z" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                +49 (0) 800 000 000
+                info@gerki.app
               </a>
             </div>
           </div>
@@ -123,7 +117,7 @@ export default function Footer() {
           style={{ borderTop: "1px solid var(--border)" }}
         >
           <p className="text-sm" style={{ color: "var(--muted)" }}>
-            © {currentYear} Gerki – Alle KIs. Eine App. Ihr PC.
+            © {currentYear} Gerki – KI-Agenten für dein Büro.
           </p>
           <div className="flex items-center gap-2">
             <div

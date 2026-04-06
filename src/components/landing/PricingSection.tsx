@@ -1,65 +1,66 @@
 const plans = [
   {
-    name: "Free",
-    price: "0",
+    name: "Standard",
+    price: "39,90",
     period: "/Monat",
-    description: "Starte sofort – keine Kreditkarte, kein API-Key nötig.",
+    description: "Dein persönlicher KI-Assistent — für Behördenpost, Dokumente und Alltagsfragen.",
     highlight: false,
     badge: null,
     features: [
-      "Lokale KI mit Ollama (kostenlos)",
-      "Mistral 7B – läuft auf deinem PC",
-      "8 Skills inklusive",
-      "Memory-System",
-      "Datei-Indexierung & Suche",
-      "Datei-Upload im Chat",
+      "2 spezialisierte KI-Agenten",
+      "Behördenpost verstehen & beantworten",
+      "Dokumente auf deinem PC finden",
+      "Desktop-Automatisierung (OpenClaw)",
+      "Standard Support",
     ],
     missing: [
-      "Claude (Anthropic) *",
-      "ChatGPT / GPT-4 *",
+      "E-Mail-Manager",
+      "Cloud-Sync",
+      "Top-KI-Modelle (Claude, GPT-4)",
     ],
-    cta: "Kostenlos starten",
-    ctaHref: "#download",
+    cta: "14 Tage kostenlos testen",
+    ctaHref: "/register?plan=standard",
   },
   {
     name: "Pro",
-    price: "49",
+    price: "59,90",
     period: "/Monat",
-    description: "Für Profis, die das Beste aus mehreren KIs herausholen wollen.",
+    description: "Wie ein Bürokollege, der nie Urlaub nimmt — für Selbstständige die wachsen wollen.",
     highlight: true,
     badge: "Empfohlen",
     features: [
-      "Alles aus Free",
-      "Claude 3.5 Sonnet & Opus *",
-      "ChatGPT / GPT-4 *",
-      "KI-Agenten-System (Openclaw)",
-      "Priorisierter Support",
-      "Früher Zugang zu neuen Features",
+      "5 spezialisierte KI-Agenten",
+      "Alles aus Standard",
+      "E-Mail-Manager",
+      "Rechtsberater- & HR-Assistent",
+      "Cloud-Sync (mehrere Geräte)",
+      "E-Mail Support (48h)",
     ],
-    missing: [],
-    cta: "Pro starten",
-    ctaHref: "#demo",
+    missing: [
+      "Top-KI-Modelle (Claude, GPT-4)",
+      "Priority Support",
+    ],
+    cta: "14 Tage kostenlos testen",
+    ctaHref: "/register?plan=pro",
   },
   {
     name: "Business",
-    price: "99",
+    price: "89,90",
     period: "/Monat",
-    description: "Für Teams und Unternehmen mit erweiterten Anforderungen.",
+    description: "Das vollständige KI-Team für dein Unternehmen — Recht, HR, Buchhaltung, Marketing.",
     highlight: false,
     badge: null,
     features: [
+      "Alle 8 KI-Agenten",
       "Alles aus Pro",
-      "Bis 10 Nutzer",
-      "Custom Skills auf Anfrage",
-      "N8N-Automatisierungen (bald)",
-      "Team-Wissensbasis",
-      "Dedizierter Ansprechpartner",
-      "SLA-Garantie",
-      "DSGVO-Auftragsdatenvertrag",
+      "Top-KI-Modelle zuschaltbar (Claude, GPT-4)",
+      "Buchhaltungs- & Marketing-Assistent",
+      "Multi-User / Team-Accounts",
+      "Priority Support (24h)",
     ],
     missing: [],
-    cta: "Business anfragen",
-    ctaHref: "#demo",
+    cta: "14 Tage kostenlos testen",
+    ctaHref: "/register?plan=business",
   },
 ];
 
@@ -72,11 +73,10 @@ export default function PricingSection() {
             Preise
           </p>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Kostenlos starten. Pro werden.
+            14 Tage kostenlos testen.
           </h2>
           <p className="text-xl max-w-2xl mx-auto" style={{ color: "var(--muted)" }}>
-            Gerki läuft lokal auf deinem PC – ohne Cloud, ohne API-Key.{" "}
-            Claude & GPT-4 sind optional für Pro-Nutzer.
+            Keine Einschränkungen im Trial. Danach automatisch zum gewählten Plan — jederzeit kündbar.
           </p>
         </div>
 
@@ -93,7 +93,6 @@ export default function PricingSection() {
                 boxShadow: plan.highlight ? "0 0 60px rgba(29, 107, 243, 0.2)" : "none",
               }}
             >
-              {/* Badge */}
               {plan.badge && (
                 <div
                   className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-white"
@@ -103,7 +102,6 @@ export default function PricingSection() {
                 </div>
               )}
 
-              {/* Plan name */}
               <div className="mb-6">
                 <h3 className="text-xl font-bold mb-1">{plan.name}</h3>
                 <p className="text-sm" style={{ color: "var(--muted)" }}>
@@ -111,20 +109,16 @@ export default function PricingSection() {
                 </p>
               </div>
 
-              {/* Price */}
               <div className="mb-8">
                 <div className="flex items-end gap-1">
                   <span className="text-5xl font-bold">{plan.price}€</span>
-                  <span className="text-lg mb-1" style={{ color: "var(--muted)" }}>
-                    {plan.period}
-                  </span>
+                  <span className="text-lg mb-1" style={{ color: "var(--muted)" }}>{plan.period}</span>
                 </div>
-                <p className="text-xs mt-1" style={{ color: "var(--muted)" }}>
-                  {plan.price === "0" ? "Für immer kostenlos" : "zzgl. MwSt. · Monatlich kündbar"}
+                <p className="text-xs mt-1 font-medium" style={{ color: "var(--accent)" }}>
+                  14 Tage kostenlos testen
                 </p>
               </div>
 
-              {/* Features included */}
               <ul className="space-y-3 flex-1 mb-8">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
@@ -135,7 +129,6 @@ export default function PricingSection() {
                     <span className="text-sm" style={{ color: "var(--foreground)" }}>{feature}</span>
                   </li>
                 ))}
-                {/* Features not included */}
                 {plan.missing.map((feature) => (
                   <li key={feature} className="flex items-start gap-3 opacity-40">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="mt-0.5 shrink-0">
@@ -147,7 +140,6 @@ export default function PricingSection() {
                 ))}
               </ul>
 
-              {/* CTA */}
               <a
                 href={plan.ctaHref}
                 className="block text-center py-3.5 rounded-xl font-semibold text-sm transition-all hover:opacity-90"
@@ -171,15 +163,18 @@ export default function PricingSection() {
           ))}
         </div>
 
-        {/* API cost disclaimer */}
-        <div className="mt-8 px-6 py-4 rounded-xl" style={{ background: "rgba(255, 180, 0, 0.05)", border: "1px solid rgba(255, 180, 0, 0.2)" }}>
+        {/* Add-on */}
+        <div className="mt-6 px-6 py-4 rounded-xl text-center" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
+          <p className="text-sm" style={{ color: "var(--muted)" }}>
+            <span className="font-semibold" style={{ color: "var(--foreground)" }}>Add-on: 9,90€</span>{" "}
+            pro extra Agent · monatlich kündbar
+          </p>
+        </div>
+
+        <div className="mt-4 px-6 py-4 rounded-xl" style={{ background: "rgba(0, 212, 170, 0.05)", border: "1px solid rgba(0, 212, 170, 0.2)" }}>
           <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>
-            <span className="font-semibold" style={{ color: "rgba(255, 180, 0, 0.9)" }}>* Hinweis zu Claude & ChatGPT:</span>{" "}
-            Für die Nutzung von Claude (Anthropic) und ChatGPT (OpenAI) benötigst du eigene API-Zugänge direkt bei den Anbietern.
-            Diese Kosten sind <span className="font-semibold">nicht</span> im Gerki-Abo enthalten.
-            Typische Kosten:{" "}
-            <span className="font-semibold" style={{ color: "var(--foreground)" }}>5–20€/Monat</span> je nach Nutzung.
-            Die lokale KI (Ollama) ist hingegen komplett kostenlos und benötigt keinen API-Key.
+            <span className="font-semibold" style={{ color: "var(--accent)" }}>Top-KI-Modelle im Business-Plan:</span>{" "}
+            Claude & GPT-4 sind über Gerkis geteilten API-Zugang inklusive — kein eigenes Konto bei OpenAI oder Anthropic nötig. Token-Limits gelten pro Monat.
           </p>
         </div>
       </div>

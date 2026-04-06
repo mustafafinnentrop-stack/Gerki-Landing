@@ -65,7 +65,7 @@ export default function Navbar() {
             Anmelden
           </Link>
           <a
-            href="#demo"
+            href="https://github.com/mustafafinnentrop-stack/gerki-app/releases"
             className="text-sm px-5 py-2 rounded-lg font-medium text-white transition-all hover:opacity-90 flex items-center gap-1.5"
             style={{ background: "var(--primary)" }}
           >
@@ -73,7 +73,7 @@ export default function Navbar() {
               <path fillRule="evenodd" d="M2 10.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm2.146-4.354a.5.5 0 01.708 0L7 8.293l2.146-2.147a.5.5 0 01.708.708l-2.5 2.5a.5.5 0 01-.708 0l-2.5-2.5a.5.5 0 010-.708z" clipRule="evenodd" />
               <path fillRule="evenodd" d="M7 2a.5.5 0 01.5.5v6a.5.5 0 01-1 0v-6A.5.5 0 017 2z" clipRule="evenodd" />
             </svg>
-            App herunterladen
+            Kostenlos testen
           </a>
         </div>
 
@@ -107,12 +107,12 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#demo"
+            href="https://github.com/mustafafinnentrop-stack/gerki-app/releases"
             className="text-center text-sm px-5 py-2 rounded-lg font-medium text-white"
             style={{ background: "var(--primary)" }}
             onClick={() => setMobileOpen(false)}
           >
-            App herunterladen
+            Kostenlos testen
           </a>
         </div>
       )}

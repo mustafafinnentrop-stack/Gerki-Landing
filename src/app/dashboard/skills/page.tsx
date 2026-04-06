@@ -1,103 +1,156 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { resolveplan } from "@/lib/getAuthUser";
 import Header from "@/components/dashboard/Header";
+import Link from "next/link";
 
-type Skill = {
+// Which agents are included per plan
+const PLAN_AGENTS: Record<string, number> = {
+  trial: 2, standard: 2, pro: 5, business: 8, expired: 0,
+};
+
+type Agent = {
   id: string;
   name: string;
   icon: string;
   category: string;
-  price: number;
-  badge: string | null;
-  active: boolean;
-  disabled?: boolean;
+  minPlan: "standard" | "pro" | "business";
   features: string[];
+  comingSoon?: boolean;
 };
 
-const skills: Skill[] = [
-  { id: "1", name: "Rechtsberater", icon: "🏛️", category: "Recht", price: 4900, badge: "BELIEBT", active: true, features: ["Vertragsanalyse", "Gesetzesrecherche", "Anwaltsbriefe"] },
-  { id: "2", name: "Buchhaltung", icon: "📊", category: "Finanzen", price: 3900, badge: "NEU", active: true, features: ["Rechnungserstellung", "EÜR-Vorbereitung", "DATEV-Export"] },
-  { id: "3", name: "Marketing", icon: "📱", category: "Marketing", price: 3900, badge: "NEU", active: true, features: ["Social Media", "Werbetexte", "SEO-Texte"] },
-  { id: "4", name: "HR-Assistent", icon: "👥", category: "Personal", price: 3900, badge: null, active: false, features: ["Arbeitsverträge", "Urlaubsverwaltung", "Onboarding"] },
-  { id: "5", name: "Vertrieb", icon: "💰", category: "Vertrieb", price: 4900, badge: "BELIEBT", active: false, features: ["Angebotserstellung", "CRM-Integration", "Pipeline-Analyse"] },
-  { id: "6", name: "E-Mail-Manager", icon: "📧", category: "Kommunikation", price: 2900, badge: null, active: false, features: ["Antwortvorschläge", "Vorlagen", "Kategorisierung"] },
-  { id: "7", name: "Einkauf & Beschaffung", icon: "🛒", category: "Einkauf", price: 3900, badge: "BALD", active: false, disabled: true, features: ["Lieferantenvergleich", "Bestelloptimierung"] },
-  { id: "8", name: "Eventplanung", icon: "🎪", category: "Planung", price: 2900, badge: "BALD", active: false, disabled: true, features: ["Budgetkalkulation", "Checklisten"] },
+const ALL_AGENTS: Agent[] = [
+  { id: "behoerdenpost", name: "Behördenpost-Assistent", icon: "🏛️", category: "Verwaltung", minPlan: "standard", features: ["Bescheide verstehen", "Antworten vorbereiten", "Fristen erkennen"] },
+  { id: "dokumente",     name: "Dokumenten-Assistent",   icon: "📄", category: "Verwaltung", minPlan: "standard", features: ["Dateien auf PC finden", "Inhalte zusammenfassen", "Vorlagen erstellen"] },
+  { id: "email",        name: "E-Mail-Manager",          icon: "📧", category: "Kommunikation", minPlan: "pro",    features: ["Antwortvorschläge", "Vorlagen", "Priorisierung"] },
+  { id: "rechtsberater",name: "Rechtsberater",           icon: "⚖️", category: "Recht",      minPlan: "pro",    features: ["Vertragsanalyse", "Gesetzesrecherche", "Anwaltsbriefe"] },
+  { id: "hr",           name: "HR-Assistent",            icon: "👥", category: "Personal",   minPlan: "pro",    features: ["Arbeitsverträge", "Onboarding-Prozesse", "Urlaubsverwaltung"] },
+  { id: "buchhaltung",  name: "Buchhaltungs-Assistent",  icon: "📊", category: "Finanzen",   minPlan: "business", features: ["Rechnungen erstellen", "EÜR-Vorbereitung", "Ausgaben kategorisieren"] },
+  { id: "marketing",    name: "Marketing-Assistent",     icon: "📱", category: "Marketing",  minPlan: "business", features: ["Social-Media-Texte", "Werbetexte", "SEO-Inhalte"] },
+  { id: "vertrieb",     name: "Vertriebs-Assistent",     icon: "💰", category: "Vertrieb",   minPlan: "business", features: ["Angebotserstellung", "CRM-Notizen", "Pipeline-Analyse"] },
 ];
 
-const badgeColors: Record<string, string> = {
-  NEU: "bg-accent/20 text-accent border-accent/30",
-  BALD: "bg-muted/20 text-muted border-border",
-  BELIEBT: "bg-orange-500/20 text-orange-400 border-orange-500/30",
-};
+const PLAN_ORDER = ["standard", "pro", "business"];
 
-export default function SkillsPage() {
-  const active = skills.filter((s) => s.active);
-  const available = skills.filter((s) => !s.active && !s.disabled);
-  const coming = skills.filter((s) => s.disabled);
+async function getUserPlan(email: string) {
+  const user = await prisma.user.findUnique({
+    where: { email },
+    include: { company: { include: { subscription: true } } },
+  });
+  return resolveplan(user as Parameters<typeof resolveplan>[0]);
+}
+
+export default async function SkillsPage() {
+  const session = await getServerSession(authOptions);
+  const plan = session?.user?.email ? await getUserPlan(session.user.email) : "trial";
+  const maxAgents = PLAN_AGENTS[plan] ?? 0;
+
+  const included = ALL_AGENTS.slice(0, maxAgents);
+  const locked = ALL_AGENTS.slice(maxAgents);
+
+  const PLAN_LABELS: Record<string, string> = { standard: "Standard", pro: "Pro", business: "Business" };
 
   return (
     <div>
-      <Header title="Skills" />
+      <Header title="Agenten & Skills" />
       <div className="p-6 max-w-5xl">
-        <p className="text-muted text-sm mb-8">
-          Erweitern Sie Ihre KI mit domänenspezifischen Fähigkeiten.
-        </p>
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-muted text-sm">
+            Deine KI-Agenten — je nach Plan stehen dir 2, 5 oder alle 8 zur Verfügung.
+          </p>
+        </div>
 
-        <Section title={`Aktive Skills (${active.length})`} skills={active} />
-        <Section title="Verfügbare Skills" skills={available} />
-        <Section title="Demnächst verfügbar" skills={coming} />
+        {/* Plan indicator */}
+        <div className="mb-8 px-4 py-3 rounded-xl border flex items-center justify-between" style={{ background: "var(--surface)", borderColor: "var(--border)" }}>
+          <div>
+            <span className="text-sm font-semibold text-foreground">Dein Plan: </span>
+            <span className="text-sm font-semibold" style={{ color: "var(--accent)" }}>{PLAN_LABELS[plan] ?? plan}</span>
+            <span className="text-sm text-muted ml-2">· {maxAgents} von 8 Agenten aktiv</span>
+          </div>
+          {plan !== "business" && (
+            <Link href="/#pricing" className="text-xs px-3 py-1.5 rounded-lg font-medium text-white hover:opacity-90 transition-opacity" style={{ background: "var(--primary)" }}>
+              Upgraden →
+            </Link>
+          )}
+        </div>
+
+        {/* Included agents */}
+        {included.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-sm font-semibold text-muted uppercase tracking-wider mb-4">
+              Im Plan enthalten ({included.length})
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {included.map((agent) => (
+                <div key={agent.id} className="relative p-5 rounded-xl border" style={{ background: "rgba(29,107,243,0.05)", borderColor: "rgba(29,107,243,0.3)" }}>
+                  <div className="absolute top-3 right-3 flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent)" }} />
+                    <span className="text-xs font-medium" style={{ color: "var(--accent)" }}>Aktiv</span>
+                  </div>
+                  <div className="text-3xl mb-3">{agent.icon}</div>
+                  <h3 className="font-semibold text-foreground mb-1">{agent.name}</h3>
+                  <ul className="space-y-0.5 mb-3">
+                    {agent.features.map((f) => (
+                      <li key={f} className="text-xs text-muted flex items-center gap-1.5">
+                        <span style={{ color: "var(--accent)" }}>✓</span> {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="pt-3 border-t border-border">
+                    <span className="text-xs text-muted">{agent.category}</span>
+                    <span className="ml-2 text-xs font-medium" style={{ color: "var(--accent)" }}>Im Plan enthalten</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Locked agents */}
+        {locked.length > 0 && (
+          <section>
+            <h2 className="text-sm font-semibold text-muted uppercase tracking-wider mb-4">
+              Mit Upgrade verfügbar ({locked.length})
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {locked.map((agent) => {
+                const requiredPlan = PLAN_LABELS[agent.minPlan];
+                const isNextPlan = PLAN_ORDER.indexOf(agent.minPlan) === PLAN_ORDER.indexOf(plan) + 1;
+                return (
+                  <div key={agent.id} className="relative p-5 rounded-xl border opacity-60" style={{ background: "var(--surface)", borderColor: "var(--border)" }}>
+                    <div className="absolute top-3 right-3">
+                      <span className="text-xs px-2 py-0.5 rounded-full border font-medium" style={{ background: "var(--surface-2)", borderColor: "var(--border)", color: "var(--muted)" }}>
+                        🔒 {requiredPlan}
+                      </span>
+                    </div>
+                    <div className="text-3xl mb-3 grayscale">{agent.icon}</div>
+                    <h3 className="font-semibold text-foreground mb-1">{agent.name}</h3>
+                    <ul className="space-y-0.5 mb-3">
+                      {agent.features.map((f) => (
+                        <li key={f} className="text-xs text-muted flex items-center gap-1.5">
+                          <span>–</span> {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="pt-3 border-t border-border flex items-center justify-between">
+                      <span className="text-xs text-muted">{agent.category}</span>
+                      {isNextPlan && (
+                        <Link href="/#pricing" className="text-xs font-medium underline" style={{ color: "var(--primary-light)" }}>
+                          Jetzt freischalten
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <p className="text-xs text-muted mt-4">
+              Extra-Agent hinzubuchen: <span className="font-semibold text-foreground">9,90€/Monat</span> pro Agent · jederzeit kündbar
+            </p>
+          </section>
+        )}
       </div>
     </div>
-  );
-}
-
-function Section({ title, skills }: { title: string; skills: Skill[] }) {
-  if (!skills.length) return null;
-  return (
-    <section className="mb-8">
-      <h2 className="text-sm font-semibold text-muted uppercase tracking-wider mb-4">{title}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {skills.map((skill) => (
-          <div
-            key={skill.id}
-            className={`relative p-5 rounded-xl border ${
-              skill.active
-                ? "bg-primary/5 border-primary/30"
-                : skill.disabled
-                ? "bg-surface border-border opacity-60"
-                : "bg-surface border-border hover:border-primary/20 transition-colors"
-            }`}
-          >
-            {skill.active && (
-              <div className="absolute top-3 right-3 flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                <span className="text-xs text-accent font-medium">Aktiv</span>
-              </div>
-            )}
-            {skill.badge && !skill.active && (
-              <div className="absolute top-3 right-3">
-                <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${badgeColors[skill.badge] ?? ""}`}>
-                  {skill.badge}
-                </span>
-              </div>
-            )}
-            <div className="text-3xl mb-3">{skill.icon}</div>
-            <h3 className="font-semibold text-foreground mb-1">{skill.name}</h3>
-            <ul className="space-y-0.5 mb-3">
-              {skill.features.slice(0, 3).map((f) => (
-                <li key={f} className="text-xs text-muted flex items-center gap-1.5">
-                  <span className="text-accent">✓</span> {f}
-                </li>
-              ))}
-            </ul>
-            <div className="flex items-center justify-between pt-3 border-t border-border">
-              <span className="text-xs text-muted">{skill.category}</span>
-              <span className="text-sm font-semibold text-foreground">
-                {(skill.price / 100).toFixed(0)} €/Mo
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
   );
 }
