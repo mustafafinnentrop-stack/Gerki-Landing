@@ -9,8 +9,8 @@ const CORS = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
-// Best available open-source model via Groq (Llama 3.3 70B — equivalent to best Ollama model)
 const MODEL = "llama-3.3-70b-versatile";
+const VISION_MODEL = "llama-3.2-11b-vision-preview";
 
 function currentMonth() {
   const d = new Date();
@@ -51,17 +51,34 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Chat-Service nicht konfiguriert. Bitte GROQ_API_KEY setzen." }, { status: 503, headers: CORS });
   }
 
-  const { messages, conversationId } = await req.json();
+  const { messages, conversationId, imageBase64, imageMimeType } = await req.json();
   if (!messages?.length) {
     return NextResponse.json({ error: "messages required" }, { status: 400, headers: CORS });
   }
+
+  const isVision = !!(imageBase64 && imageMimeType);
+  const activeModel = isVision ? VISION_MODEL : MODEL;
 
   const systemPrompt = `Du bist Gerki, ein spezialisierter KI-Assistent für den deutschen Büroalltag.
 Du hilfst mit Behördenpost, Verträgen, Rechnungen, E-Mails und anderen Büroaufgaben.
 Antworte immer auf Deutsch, präzise und praxisorientiert.
 Heute ist der ${new Date().toLocaleDateString("de-DE")}.`;
 
-  // Groq API — OpenAI-compatible format, runs Llama 3.3 70B
+  // Build messages — last user message gets image attached for vision requests
+  const builtMessages = messages.slice(-20).map((m: { role: string; content: string }, idx: number) => {
+    const isLastUser = idx === messages.slice(-20).length - 1 && m.role === "user" && isVision;
+    if (isLastUser) {
+      return {
+        role: "user",
+        content: [
+          { type: "image_url", image_url: { url: `data:${imageMimeType};base64,${imageBase64}` } },
+          { type: "text", text: m.content },
+        ],
+      };
+    }
+    return m;
+  });
+
   const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -69,10 +86,10 @@ Heute ist der ${new Date().toLocaleDateString("de-DE")}.`;
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: MODEL,
+      model: activeModel,
       messages: [
         { role: "system", content: systemPrompt },
-        ...messages.slice(-20),
+        ...builtMessages,
       ],
       max_tokens: 2048,
       stream: true,
