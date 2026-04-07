@@ -38,8 +38,8 @@ const trustBadges = [
         <path d="M11 16l3 3 7-7" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "DSGVO-konform",
-    description: "Made in Germany – vollständige EU-Datenschutz-Konformität",
+    title: "Made in Germany",
+    description: "Entwickelt in Deutschland – für den deutschen Mittelstand",
   },
 ];
 

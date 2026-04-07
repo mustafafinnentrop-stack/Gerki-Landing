@@ -17,17 +17,25 @@ export async function GET() {
 
   if (!user?.company?.stripeCustomerId) {
     return NextResponse.json(
-      { error: "Kein Stripe-Konto gefunden." },
+      { error: "Kein Stripe-Konto gefunden. Bitte zuerst ein Abo abschließen." },
       { status: 404 }
     );
   }
 
   const baseUrl = process.env.NEXTAUTH_URL ?? "https://www.gerki.app";
 
-  const portalSession = await stripe.billingPortal.sessions.create({
-    customer: user.company.stripeCustomerId,
-    return_url: `${baseUrl}/dashboard`,
-  });
+  try {
+    const portalSession = await stripe.billingPortal.sessions.create({
+      customer: user.company.stripeCustomerId,
+      return_url: `${baseUrl}/dashboard`,
+    });
 
-  return NextResponse.json({ url: portalSession.url });
+    return NextResponse.json({ url: portalSession.url });
+  } catch (err) {
+    console.error("[billing/portal] Stripe error:", err);
+    return NextResponse.json(
+      { error: "Fehler beim Öffnen des Kundenportals. Bitte versuche es erneut." },
+      { status: 502 }
+    );
+  }
 }

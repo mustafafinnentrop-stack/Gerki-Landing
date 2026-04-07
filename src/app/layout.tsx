@@ -3,20 +3,21 @@ import "./globals.css";
 import SessionProvider from "@/components/providers/SessionProvider";
 
 export const metadata: Metadata = {
-  title: "Gerki – Lokale KI für den deutschen Mittelstand | DSGVO-konform",
+  title: "Gerki – KI-Agenten für dein Büro | Made in Germany",
   description:
-    "Die deutsche KI-Plattform für den Mittelstand – DSGVO-konform, modular erweiterbar, auf Ihre Firmendaten trainiert. Lokale Installation, 100% Datensouveränität.",
+    "8 spezialisierte KI-Agenten für den deutschen Mittelstand. Verträge prüfen, Behördenpost verstehen, Rechnungen erstellen – kein eigener API-Key nötig. 14 Tage kostenlos testen.",
   keywords: [
-    "lokale KI",
-    "DSGVO KI",
+    "KI Agenten",
+    "KI Büro",
     "KI Mittelstand",
     "deutsche KI",
-    "KI Unternehmen",
+    "KI Assistent",
     "künstliche Intelligenz Firma",
+    "KI Software Deutschland",
   ],
   openGraph: {
-    title: "Gerki – Lokale KI für den deutschen Mittelstand",
-    description: "DSGVO-konforme KI-Plattform für den Mittelstand.",
+    title: "Gerki – KI-Agenten für dein Büro",
+    description: "8 spezialisierte KI-Agenten für den deutschen Mittelstand. 14 Tage kostenlos testen.",
     type: "website",
     locale: "de_DE",
     siteName: "Gerki",
@@ -40,11 +41,12 @@ export default function RootLayout({
               "@type": "SoftwareApplication",
               name: "Gerki",
               applicationCategory: "BusinessApplication",
-              description: "Modulare deutsche KI-Plattform für den Mittelstand – DSGVO-konform.",
-              operatingSystem: "Web",
+              description: "8 spezialisierte KI-Agenten für den deutschen Mittelstand. Kein eigener API-Key nötig.",
+              operatingSystem: "Web, macOS, Windows",
               offers: [
-                { "@type": "Offer", name: "Basic", price: "299", priceCurrency: "EUR" },
-                { "@type": "Offer", name: "Pro", price: "799", priceCurrency: "EUR" },
+                { "@type": "Offer", name: "Standard", price: "39.90", priceCurrency: "EUR" },
+                { "@type": "Offer", name: "Pro", price: "59.90", priceCurrency: "EUR" },
+                { "@type": "Offer", name: "Business", price: "89.90", priceCurrency: "EUR" },
               ],
               provider: { "@type": "Organization", name: "Gerki GmbH", addressCountry: "DE" },
             }),

@@ -21,7 +21,7 @@ export default async function AppAuthCallbackPage() {
     redirect("/login?source=app");
   }
 
-  const plan = mapPlan(user.company?.subscription?.plan ?? "PERSONAL");
+  const plan = mapPlan(user.company?.subscription?.plan ?? "TRIAL");
   const token = generateAppJWT({ id: user.id, email: user.email, name: user.name, plan });
 
   return <AppAuthRedirect token={token} />;
