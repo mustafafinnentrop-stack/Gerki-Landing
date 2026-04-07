@@ -114,7 +114,10 @@ export default function PricingSection() {
                   <span className="text-5xl font-bold">{plan.price}€</span>
                   <span className="text-lg mb-1" style={{ color: "var(--muted)" }}>{plan.period}</span>
                 </div>
-                <p className="text-xs mt-1 font-medium" style={{ color: "var(--accent)" }}>
+                <p className="text-xs mt-1" style={{ color: "var(--muted)" }}>
+                  Monatlich abgerechnet · jederzeit kündbar
+                </p>
+                <p className="text-xs mt-0.5 font-medium" style={{ color: "var(--accent)" }}>
                   14 Tage kostenlos testen
                 </p>
               </div>
@@ -159,6 +162,21 @@ export default function PricingSection() {
               >
                 {plan.cta}
               </a>
+            </div>
+          ))}
+        </div>
+
+        {/* Trust-Badges */}
+        <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm" style={{ color: "var(--muted)" }}>
+          {[
+            { icon: "📅", text: "Monatlich kündbar" },
+            { icon: "🔒", text: "Keine Mindestlaufzeit" },
+            { icon: "💳", text: "Kündigung zum Monatsende" },
+            { icon: "✅", text: "Keine versteckten Kosten" },
+          ].map(({ icon, text }) => (
+            <div key={text} className="flex items-center gap-2">
+              <span>{icon}</span>
+              <span>{text}</span>
             </div>
           ))}
         </div>
