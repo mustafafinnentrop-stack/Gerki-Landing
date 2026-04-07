@@ -19,18 +19,14 @@ export async function POST(req: NextRequest) {
   const priceId = PLAN_PRICE_IDS[plan];
   if (!priceId) {
     return NextResponse.json(
-      { error: "Stripe Preis nicht konfiguriert." },
+      { error: "Stripe Preis nicht konfiguriert. Bitte kontaktiere den Support." },
       { status: 500 }
     );
   }
 
   const user = await prisma.user.findUnique({
     where: { email: session.user.email },
-    include: {
-      company: {
-        include: { subscription: true },
-      },
-    },
+    include: { company: { include: { subscription: true } } },
   });
 
   if (!user?.company) {
@@ -38,36 +34,43 @@ export async function POST(req: NextRequest) {
   }
 
   const company = user.company;
-
-  // Get or create Stripe customer
-  let stripeCustomerId = company.stripeCustomerId;
-  if (!stripeCustomerId) {
-    const customer = await stripe.customers.create({
-      email: user.email ?? undefined,
-      name: company.name,
-      metadata: { companyId: company.id, userId: user.id },
-    });
-    stripeCustomerId = customer.id;
-    await prisma.company.update({
-      where: { id: company.id },
-      data: { stripeCustomerId },
-    });
-  }
-
   const baseUrl = process.env.NEXTAUTH_URL ?? "https://www.gerki.app";
 
-  const checkoutSession = await stripe.checkout.sessions.create({
-    customer: stripeCustomerId,
-    mode: "subscription",
-    line_items: [{ price: priceId, quantity: 1 }],
-    subscription_data: {
-      trial_period_days: 14,
-      metadata: { companyId: company.id, plan },
-    },
-    success_url: `${baseUrl}/dashboard?checkout=success`,
-    cancel_url: `${baseUrl}/dashboard?checkout=cancelled`,
-    allow_promotion_codes: true,
-  });
+  try {
+    // Get or create Stripe customer
+    let stripeCustomerId = company.stripeCustomerId;
+    if (!stripeCustomerId) {
+      const customer = await stripe.customers.create({
+        email: user.email ?? undefined,
+        name: company.name,
+        metadata: { companyId: company.id, userId: user.id },
+      });
+      stripeCustomerId = customer.id;
+      await prisma.company.update({
+        where: { id: company.id },
+        data: { stripeCustomerId },
+      });
+    }
 
-  return NextResponse.json({ url: checkoutSession.url });
+    const checkoutSession = await stripe.checkout.sessions.create({
+      customer: stripeCustomerId,
+      mode: "subscription",
+      line_items: [{ price: priceId, quantity: 1 }],
+      subscription_data: {
+        trial_period_days: 14,
+        metadata: { companyId: company.id, plan },
+      },
+      success_url: `${baseUrl}/dashboard?checkout=success`,
+      cancel_url: `${baseUrl}/dashboard?checkout=cancelled`,
+      allow_promotion_codes: true,
+    });
+
+    return NextResponse.json({ url: checkoutSession.url });
+  } catch (err) {
+    console.error("[checkout] Stripe error:", err);
+    return NextResponse.json(
+      { error: "Fehler beim Erstellen der Checkout-Session. Bitte versuche es erneut." },
+      { status: 502 }
+    );
+  }
 }
