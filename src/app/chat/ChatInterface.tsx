@@ -220,7 +220,7 @@ export default function ChatInterface({ user }: { user: { name: string; email: s
                 <rect y="12" width="16" height="1.5" rx="1" />
               </svg>
             </button>
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-white text-xs" style={{ background: "linear-gradient(135deg, #1d6bf3, #00d4aa)" }}>G</div>
+            <img src="/gerki-icon.svg" alt="Gerki" className="w-7 h-7 rounded-lg" />
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-sm">Gerki KI-Chat</span>
@@ -236,7 +236,7 @@ export default function ChatInterface({ user }: { user: { name: string; email: s
         <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
           {messages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center gap-4" style={{ color: "var(--muted)" }}>
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold text-white" style={{ background: "linear-gradient(135deg, #1d6bf3, #00d4aa)" }}>G</div>
+              <img src="/gerki-icon.svg" alt="Gerki" className="w-16 h-16 rounded-2xl" />
               <div>
                 <p className="font-semibold text-lg" style={{ color: "var(--foreground)" }}>Hallo {firstName}, wie kann ich helfen?</p>
                 <p className="text-sm mt-1">Deine Gespräche werden automatisch mit der Gerki-App synchronisiert.</p>
@@ -254,7 +254,7 @@ export default function ChatInterface({ user }: { user: { name: string; email: s
           {messages.map((msg, i) => (
             <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} gap-3`}>
               {msg.role === "assistant" && (
-                <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0 mt-1" style={{ background: "linear-gradient(135deg, #00d4aa, #1d6bf3)" }}>G</div>
+                <img src="/gerki-icon.svg" alt="Gerki" className="w-7 h-7 rounded-full shrink-0 mt-1" />
               )}
               <div className="max-w-2xl px-4 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap"
                 style={msg.role === "user"
