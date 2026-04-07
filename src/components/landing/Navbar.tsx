@@ -25,12 +25,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-sm"
-            style={{ background: "linear-gradient(135deg, #1d6bf3, #00d4aa)" }}
-          >
-            G
-          </div>
+          <img src="/gerki-icon.svg" alt="Gerki" className="w-8 h-8 rounded-lg" />
           <span className="font-bold text-xl tracking-tight" style={{ color: "var(--foreground)" }}>
             Gerki
           </span>

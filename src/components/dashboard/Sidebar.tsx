@@ -20,9 +20,7 @@ export default function Sidebar() {
     <aside className="w-64 flex-shrink-0 flex flex-col bg-surface border-r border-border h-screen sticky top-0">
       <div className="h-16 flex items-center px-6 border-b border-border">
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-white font-bold text-xs">G</span>
-          </div>
+          <img src="/gerki-icon.svg" alt="Gerki" className="w-7 h-7 rounded-lg" />
           <span className="font-bold text-foreground">Gerki</span>
         </Link>
       </div>
