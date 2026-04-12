@@ -41,7 +41,7 @@ export default function ChatInterface({ user }: { user: { name: string; email: s
   const [loading, setLoading] = useState(false);
   const [loadingConvs, setLoadingConvs] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [attachedFile, setAttachedFile] = useState<AttachedFile | null>(null);
   const [uploading, setUploading] = useState(false);
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
@@ -235,9 +235,20 @@ export default function ChatInterface({ user }: { user: { name: string; email: s
   return (
     <div className="flex h-screen" style={{ background: "var(--background)", color: "var(--foreground)" }}>
 
+      {/* Mobile overlay backdrop */}
+      {sidebarOpen && (
+        <div
+          className="md:hidden fixed inset-0 z-30 bg-black/60 backdrop-blur-sm"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
       {sidebarOpen && (
-        <div className="w-64 flex flex-col shrink-0" style={{ background: "var(--surface)", borderRight: "1px solid var(--border)" }}>
+        <div
+          className="fixed md:relative inset-y-0 left-0 z-40 w-72 md:w-64 flex flex-col shrink-0"
+          style={{ background: "var(--surface)", borderRight: "1px solid var(--border)" }}
+        >
           <div className="p-3 flex items-center justify-between" style={{ borderBottom: "1px solid var(--border)" }}>
             <span className="text-sm font-semibold">Gespräche</span>
             <button
@@ -310,12 +321,12 @@ export default function ChatInterface({ user }: { user: { name: string; email: s
             </button>
             <img src="/gerki-icon.svg" alt="Gerki" className="w-7 h-7 rounded-lg" />
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <span className="font-semibold text-sm">Gerki KI-Chat</span>
-                <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: "rgba(0,212,170,0.15)", color: "var(--accent)", border: "1px solid rgba(0,212,170,0.3)" }}>⚡ Llama 3.3 70B</span>
-                <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: "rgba(29,107,243,0.1)", color: "var(--primary-light)", border: "1px solid rgba(29,107,243,0.2)" }}>☁ Cloud-Sync aktiv</span>
+                <span className="hidden sm:inline text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: "rgba(0,212,170,0.15)", color: "var(--accent)", border: "1px solid rgba(0,212,170,0.3)" }}>⚡ Llama 3.3 70B</span>
+                <span className="hidden sm:inline text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: "rgba(29,107,243,0.1)", color: "var(--primary-light)", border: "1px solid rgba(29,107,243,0.2)" }}>☁ Cloud-Sync</span>
               </div>
-              <div className="text-xs" style={{ color: "var(--muted)" }}>{user.email}</div>
+              <div className="text-xs truncate max-w-[180px] sm:max-w-none" style={{ color: "var(--muted)" }}>{user.email}</div>
             </div>
           </div>
         </div>
@@ -330,7 +341,7 @@ export default function ChatInterface({ user }: { user: { name: string; email: s
                 <p className="text-sm mt-1">Deine Gespräche werden automatisch mit der Gerki-App synchronisiert.</p>
                 <p className="text-xs mt-2" style={{ color: "var(--muted)", opacity: 0.7 }}>📎 Du kannst PDF, Word, Excel und Bilder hochladen</p>
               </div>
-              <div className="grid grid-cols-2 gap-3 mt-2 max-w-md w-full">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2 max-w-md w-full px-2 sm:px-0">
                 {["Erkläre mir diesen Behördenbrief", "Prüfe diesen Vertrag", "Erstelle eine Rechnung", "Schreibe eine professionelle E-Mail"].map((s) => (
                   <button key={s} onClick={() => setInput(s)} className="text-sm px-4 py-3 rounded-xl text-left transition-all hover:bg-white/10" style={{ border: "1px solid var(--border)", color: "var(--foreground)" }}>
                     {s}
@@ -383,7 +394,7 @@ export default function ChatInterface({ user }: { user: { name: string; email: s
         </div>
 
         {/* Input */}
-        <div className="shrink-0 px-4 pb-4 pt-2" style={{ borderTop: "1px solid var(--border)", background: "var(--surface)" }}>
+        <div className="shrink-0 px-4 pt-2" style={{ borderTop: "1px solid var(--border)", background: "var(--surface)", paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}>
           <div className="max-w-3xl mx-auto">
 
             {/* Attached file badge */}
