@@ -35,14 +35,14 @@ export default function HeroSection() {
 
         {/* Headline */}
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
-          KI-Agenten{" "}
-          <span className="gradient-text">für dein Büro.</span>
+          Die KI die{" "}
+          <span className="gradient-text">bei dir bleibt.</span>
         </h1>
 
         {/* Subline */}
         <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-4 leading-relaxed" style={{ color: "var(--muted)" }}>
-          Spezialisierte Assistenten für Recht, Buchhaltung, HR, E-Mail und mehr —
-          auf deinem Desktop, immer verfügbar, ohne extra Abos.
+          100% lokal auf deinem Rechner. Keine Cloud, keine Kundendaten im Internet.
+          DSGVO-konform von Anfang an — für Behördenpost, Verträge und Geschäftsdokumente.
         </p>
 
         {/* CTA Buttons */}
@@ -136,9 +136,9 @@ export default function HeroSection() {
         {/* Trust badges */}
         <div className="flex flex-wrap justify-center gap-6 mt-12">
           {[
-            "8 spezialisierte KI-Agenten",
+            "100% lokal — keine Cloud",
             "14 Tage gratis — kein Risiko",
-            "Kein Abo bei OpenAI nötig",
+            "DSGVO-konform by Design",
             "Jederzeit kündbar",
             "Made in Germany",
           ].map((badge) => (

@@ -1,62 +1,65 @@
 const plans = [
   {
-    name: "Standard",
-    price: "39,90",
+    name: "Basic",
+    price: "29,90",
     period: "/Monat",
-    description: "Dein persönlicher KI-Assistent — für Behördenpost, Dokumente und Alltagsfragen.",
+    description: "Für Einzelunternehmer — intelligente Helfer für Behördenpost, Dokumente und E-Mail.",
     highlight: false,
     badge: null,
     features: [
-      "2 spezialisierte KI-Agenten",
+      "4 spezialisierte KI-Agenten",
       "Behördenpost verstehen & beantworten",
-      "Dokumente auf deinem PC finden",
-      "Desktop-Automatisierung (OpenClaw)",
+      "Dokumente auf deinem PC finden & analysieren",
+      "E-Mail-Drafts verfassen",
+      "100% lokal — DSGVO-konform",
       "Standard Support",
     ],
     missing: [
-      "E-Mail-Manager",
-      "Cloud-Sync",
-      "Top-KI-Modelle (Claude, GPT-4)",
+      "HR-Assistent",
+      "Rechtsberater",
+      "Buchhaltungs- & Marketing-Agent",
     ],
     cta: "14 Tage kostenlos testen",
-    ctaHref: "/register?plan=standard",
+    ctaHref: "/register?plan=basic",
   },
   {
     name: "Pro",
-    price: "59,90",
+    price: "49,90",
     period: "/Monat",
-    description: "Wie ein Bürokollege, der nie Urlaub nimmt — für Selbstständige die wachsen wollen.",
+    description: "Für KMUs mit Mitarbeitern — komplettes KI-Team für HR, Recht und Verwaltung.",
     highlight: true,
     badge: "Empfohlen",
     features: [
-      "5 spezialisierte KI-Agenten",
-      "Alles aus Standard",
-      "E-Mail-Manager",
-      "Rechtsberater- & HR-Assistent",
-      "Cloud-Sync (mehrere Geräte)",
-      "E-Mail Support (48h)",
+      "6 spezialisierte KI-Agenten",
+      "Alles aus Basic",
+      "HR-Assistent & Recruiting",
+      "Rechtsberater (Verträge, Haftung)",
+      "Multi-User Accounts",
+      "E-Mail Support (24h)",
+      "100% lokal — keine Cloud",
     ],
     missing: [
-      "Top-KI-Modelle (Claude, GPT-4)",
-      "Priority Support",
+      "Buchhaltungs-Agent",
+      "Marketing-Agent",
     ],
     cta: "14 Tage kostenlos testen",
     ctaHref: "/register?plan=pro",
   },
   {
     name: "Business",
-    price: "89,90",
+    price: "79,90",
     period: "/Monat",
-    description: "Das vollständige KI-Team für dein Unternehmen — Recht, HR, Buchhaltung, Marketing.",
+    description: "Für wachsende Unternehmen — alle 8 Agenten inkl. Buchhaltung & Marketing.",
     highlight: false,
     badge: null,
     features: [
       "Alle 8 KI-Agenten",
       "Alles aus Pro",
-      "Top-KI-Modelle zuschaltbar (Claude, GPT-4)",
-      "Buchhaltungs- & Marketing-Assistent",
-      "Multi-User / Team-Accounts",
+      "Buchhaltungs-Agent",
+      "Marketing & Social Media Agent",
+      "Beliebig viele Team-Accounts",
       "Priority Support (24h)",
+      "100% lokal — Daten bleiben Ihr Betriebsgeheimnis",
     ],
     missing: [],
     cta: "14 Tage kostenlos testen",
@@ -191,8 +194,8 @@ export default function PricingSection() {
 
         <div className="mt-4 px-6 py-4 rounded-xl" style={{ background: "rgba(0, 212, 170, 0.05)", border: "1px solid rgba(0, 212, 170, 0.2)" }}>
           <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>
-            <span className="font-semibold" style={{ color: "var(--accent)" }}>Top-KI-Modelle im Business-Plan:</span>{" "}
-            Claude & GPT-4 sind über Gerkis geteilten API-Zugang inklusive — kein eigenes Konto bei OpenAI oder Anthropic nötig. Token-Limits gelten pro Monat.
+            <span className="font-semibold" style={{ color: "var(--accent)" }}>100% lokal — deine Sicherheit:</span>{" "}
+            Alle Pläne laufen auf deinem Rechner mit Ollama. Kundendaten verlassen dein System nie. Kein Cloud-Vendor, keine Datenschutzbeauftragten nötig — DSGVO-konform by Design.
           </p>
         </div>
       </div>

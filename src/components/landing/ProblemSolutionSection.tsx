@@ -1,18 +1,18 @@
 const problems = [
-  "Ständig zwischen ChatGPT, Claude & Co. wechseln",
+  "Kundendaten landen in Cloud-Systemen von Drittanbietern",
   "Kein KI-Tool kennt deine Branche oder Arbeitsweise",
   "Behördenbriefe, Verträge, Formulare – alles manuell",
-  "Jedes Gespräch beginnt wieder von vorne – kein Kontext",
-  "Teure API-Keys bei OpenAI & Anthropic selbst buchen",
+  "Jedes Gespräch wird zum Training der KI verwendet",
+  "Cloud-Lösungen erfordern Datenschutzbeauftragte & AVVs",
   "Keine Automatisierung ohne Programmierkenntnisse",
 ];
 
 const solutions = [
-  "8 spezialisierte KI-Agenten – einer für jede Aufgabe",
-  "Buchhalter, Jurist, Übersetzer & Co. – direkt einsatzbereit",
+  "100% lokal – deine Daten verlassen deinen Rechner nie",
+  "8 spezialisierte KI-Agenten für alle Büroaufgaben",
   "Findet Dokumente automatisch und schreibt Antworten",
-  "Cloud-Sync: Gespräche auf allen Geräten verfügbar",
-  "Kein eigener API-Key nötig – alles im Abo enthalten",
+  "Ollama läuft offline – auch ohne Internet-Verbindung",
+  "DSGVO-konform by Design – kein Datenschutzbeauftragter nötig",
   "Einfach installieren wie jede andere App – in 2 Minuten",
 ];
 
@@ -89,7 +89,7 @@ export default function ProblemSolutionSection() {
               </h3>
             </div>
             <p className="mb-6" style={{ color: "var(--muted)" }}>
-              Gerki ist eine Desktop-App, die alle KIs vereint und direkt mit Ihrem PC zusammenarbeitet:
+              Gerki ist eine Desktop-App, die komplett lokal läuft — Ihre Kundendaten bleiben auf Ihrem Rechner:
             </p>
             <ul className="space-y-3">
               {solutions.map((solution) => (
