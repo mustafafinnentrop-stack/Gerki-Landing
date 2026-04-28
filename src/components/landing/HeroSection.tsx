@@ -30,19 +30,19 @@ export default function HeroSection() {
           }}
         >
           <span className="w-2 h-2 rounded-full inline-block animate-pulse" style={{ background: "var(--accent)" }} />
-          8 spezialisierte KI-Agenten · 14 Tage kostenlos testen
+          Sprachassistent + 8 Agenten · lokal &amp; offline · 14 Tage kostenlos
         </div>
 
         {/* Headline */}
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
-          KI-Agenten{" "}
-          <span className="gradient-text">für dein Büro.</span>
+          Die KI die{" "}
+          <span className="gradient-text">bei dir bleibt.</span>
         </h1>
 
         {/* Subline */}
         <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-4 leading-relaxed" style={{ color: "var(--muted)" }}>
-          Spezialisierte Assistenten für Recht, Buchhaltung, HR, E-Mail und mehr —
-          auf deinem Desktop, immer verfügbar, ohne extra Abos.
+          Läuft komplett auf deinem Rechner — kein Internet, kein Tracking.
+          Für Behördenpost, Verträge und Geschäftsdokumente — ohne Abo-Dschungel.
         </p>
 
         {/* CTA Buttons */}
@@ -136,9 +136,9 @@ export default function HeroSection() {
         {/* Trust badges */}
         <div className="flex flex-wrap justify-center gap-6 mt-12">
           {[
-            "8 spezialisierte KI-Agenten",
+            "100% lokal — keine Cloud",
             "14 Tage gratis — kein Risiko",
-            "Kein Abo bei OpenAI nötig",
+            "Offline & privat",
             "Jederzeit kündbar",
             "Made in Germany",
           ].map((badge) => (
