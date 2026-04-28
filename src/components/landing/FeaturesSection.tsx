@@ -20,9 +20,9 @@ const features = [
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "100% lokal — DSGVO-konform",
-    description: "Die KI läuft komplett auf Ihrem Rechner. Ihre Kundendaten verlassen den PC nie — nicht zum Training, nicht zur Analyse, überhaupt nicht.",
-    highlight: "Kein Cloud-Vendor",
+    title: "Privat & offline",
+    description: "Die KI läuft komplett auf Ihrem Rechner — kein Tracking, keine Datenweitergabe, kein Internet nötig.",
+    highlight: "Kein Tracking",
     comingSoon: false,
   },
   {
@@ -94,7 +94,7 @@ const features = [
       </svg>
     ),
     title: "Cloud-Konnektoren",
-    description: "Google Drive, OneDrive und Dropbox optional verbinden — als DSGVO-konformes Opt-In. Sie entscheiden explizit was synchronisiert wird.",
+    description: "Google Drive, OneDrive und Dropbox optional verbinden — als freiwilliges Opt-In. Sie entscheiden explizit was synchronisiert wird.",
     highlight: "Coming Soon",
     comingSoon: true,
   },
@@ -123,10 +123,10 @@ export default function FeaturesSection() {
             Warum Gerki anders ist
           </p>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Die erste DSGVO-konforme Lösung.
+            Lokal. Privat. Leistungsstark.
           </h2>
           <p className="text-xl max-w-2xl mx-auto" style={{ color: "var(--muted)" }}>
-            Gerki läuft komplett auf Ihrem Rechner. Keine Cloud, keine API-Kosten, keine Datenschutzbeauftragten nötig.
+            Gerki läuft komplett auf Ihrem Rechner. Keine Cloud, keine API-Kosten, keine monatlichen Abonnements für KI-Dienste.
           </p>
         </div>
 

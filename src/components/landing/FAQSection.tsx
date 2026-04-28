@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     question: "Was ist der Sprachassistent (Jarvis Mode)?",
-    answer: "Der Jarvis Mode ist ein Vollbild Voice-Interface mit animierter Gerki-Orb. Sie sprechen, Gerki versteht und antwortet per Stimme. TTS (Text-to-Sprache) läuft komplett lokal, deutsche und andere Stimmen sind wählbar. STT (Sprache-zu-Text) nutzt die Web Speech API des Browsers — Sie geben einmalig eine DSGVO-Einwilligung. Zwischen Voice Mode und Text Mode können Sie jederzeit wechseln.",
+    answer: "Der Jarvis Mode ist ein Vollbild Voice-Interface mit animierter Gerki-Orb. Sie sprechen, Gerki versteht und antwortet per Stimme. TTS (Text-to-Sprache) läuft komplett lokal, deutsche und andere Stimmen sind wählbar. STT (Sprache-zu-Text) nutzt die Web Speech API des Browsers — Sie geben einmalig eine Mikrofonerlaubnis im Browser. Zwischen Voice Mode und Text Mode können Sie jederzeit wechseln.",
   },
   {
     question: "Was ist die Morgen-Routine?",

@@ -41,8 +41,8 @@ export default function HeroSection() {
 
         {/* Subline */}
         <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-4 leading-relaxed" style={{ color: "var(--muted)" }}>
-          100% lokal auf deinem Rechner. Keine Cloud, keine Kundendaten im Internet.
-          DSGVO-konform von Anfang an — für Behördenpost, Verträge und Geschäftsdokumente.
+          Läuft komplett auf deinem Rechner — kein Internet, kein Tracking.
+          Für Behördenpost, Verträge und Geschäftsdokumente — ohne Abo-Dschungel.
         </p>
 
         {/* CTA Buttons */}
@@ -138,7 +138,7 @@ export default function HeroSection() {
           {[
             "100% lokal — keine Cloud",
             "14 Tage gratis — kein Risiko",
-            "DSGVO-konform by Design",
+            "Offline & privat",
             "Jederzeit kündbar",
             "Made in Germany",
           ].map((badge) => (

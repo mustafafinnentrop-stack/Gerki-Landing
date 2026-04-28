@@ -13,7 +13,7 @@ const plans = [
       "Morgen-Routine (Wetter, News, Kalender)",
       "OS-Vollzugriff (Apps, Dateien, Shell)",
       "Dateizugriff auf deinen PC",
-      "100% lokal mit Ollama — DSGVO-konform",
+      "100% lokal mit Ollama — offline & privat",
     ],
     missing: [],
     cta: "Jetzt kostenlos testen",
@@ -31,7 +31,7 @@ const plans = [
       "Alles aus dem Trial",
       "Erweiterte Skills",
       "Priorität-Support",
-      "100% lokal — DSGVO-konform",
+      "100% lokal — keine Cloud",
     ],
     missing: [
       "Cloud-Konnektoren",
@@ -52,7 +52,7 @@ const plans = [
       "Alles aus Standard",
       "Alle Skills freigeschaltet",
       "Cloud-Konnektoren (Google Drive, OneDrive, Dropbox)",
-      "DSGVO-Opt-In — Sie entscheiden was synchronisiert wird",
+      "Freiwilliges Opt-In — Sie entscheiden was synchronisiert wird",
     ],
     missing: [
       "Team-Accounts & Admin-Panel",
@@ -201,7 +201,7 @@ export default function PricingSection() {
         <div className="mt-6 px-6 py-4 rounded-xl" style={{ background: "rgba(0, 212, 170, 0.05)", border: "1px solid rgba(0, 212, 170, 0.2)" }}>
           <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>
             <span className="font-semibold" style={{ color: "var(--accent)" }}>100% lokal — deine Sicherheit:</span>{" "}
-            Alle Pläne laufen auf deinem Rechner mit Ollama. Kein API-Key nötig, kein Cloud-Zwang. Kundendaten verlassen dein System nie — DSGVO-konform by Design.
+            Alle Pläne laufen auf deinem Rechner mit Ollama. Kein API-Key nötig, kein Cloud-Zwang. Deine Daten bleiben auf deinem Rechner — offline, sicher, schnell.
           </p>
         </div>
       </div>

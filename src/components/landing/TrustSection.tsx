@@ -28,8 +28,8 @@ const trustBadges = [
         <path d="M16 22v2" strokeLinecap="round" />
       </svg>
     ),
-    title: "100% Datensouveränität",
-    description: "Dateien bleiben auf Ihrem PC – nur Sie entscheiden was gesendet wird",
+    title: "Privat & offline",
+    description: "Deine Dateien verlassen den Rechner nie — kein Tracking, keine Cloud",
   },
   {
     icon: (

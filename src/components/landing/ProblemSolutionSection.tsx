@@ -1,9 +1,9 @@
 const problems = [
-  "Kundendaten landen in Cloud-Systemen von Drittanbietern",
+  "Deine Daten wandern in Cloud-Systeme die du nicht kontrollierst",
   "Kein KI-Tool kennt deine Branche oder Arbeitsweise",
   "Behördenbriefe, Verträge, Formulare – alles manuell",
   "Jedes Gespräch wird zum Training der KI verwendet",
-  "Cloud-Lösungen erfordern Datenschutzbeauftragte & AVVs",
+  "Cloud-KI kostet monatlich Extra-Abos — und funktioniert nur mit Internet",
   "Keine Automatisierung ohne Programmierkenntnisse",
 ];
 
@@ -12,7 +12,7 @@ const solutions = [
   "8 spezialisierte KI-Agenten für alle Büroaufgaben",
   "Findet Dokumente automatisch und schreibt Antworten",
   "Ollama läuft offline – auch ohne Internet-Verbindung",
-  "DSGVO-konform by Design – kein Datenschutzbeauftragter nötig",
+  "Kein Cloud-Abo, kein Internet nötig — läuft vollständig auf deinem PC",
   "Einfach installieren wie jede andere App – in 2 Minuten",
 ];
 
@@ -89,7 +89,7 @@ export default function ProblemSolutionSection() {
               </h3>
             </div>
             <p className="mb-6" style={{ color: "var(--muted)" }}>
-              Gerki ist eine Desktop-App, die komplett lokal läuft — Ihre Kundendaten bleiben auf Ihrem Rechner:
+              Gerki ist eine Desktop-App, die komplett lokal läuft — deine Daten bleiben bei dir:
             </p>
             <ul className="space-y-3">
               {solutions.map((solution) => (

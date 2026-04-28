@@ -26,7 +26,7 @@ const steps = [
   {
     number: "03",
     title: "Loslegen – Ihre Daten bleiben lokal",
-    description: "Stellen Sie Fragen, lassen Sie Dokumente suchen, delegieren Sie Aufgaben. Alles auf Ihrem PC – DSGVO-konform, ohne Cloud.",
+    description: "Stellen Sie Fragen, lassen Sie Dokumente suchen, delegieren Sie Aufgaben. Alles auf Ihrem PC — kein Internet nötig, kein Tracking.",
     details: ["Fragen stellen & Agenten starten", "Dokumente automatisch finden", "Ergebnisse exportieren & teilen"],
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.5">
