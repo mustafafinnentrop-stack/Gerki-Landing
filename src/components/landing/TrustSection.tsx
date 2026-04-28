@@ -16,8 +16,8 @@ const trustBadges = [
         <path d="M16 4v4M16 24v4M4 16h4M24 16h4M7.51 7.51l2.83 2.83M21.66 21.66l2.83 2.83M7.51 24.49l2.83-2.83M21.66 10.34l2.83-2.83" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Claude + ChatGPT",
-    description: "Alle führenden KI-Modelle in einer einzigen App vereint",
+    title: "Kein API-Key nötig",
+    description: "Läuft mit Ollama – kein Account bei OpenAI oder Anthropic erforderlich",
   },
   {
     icon: (
@@ -51,7 +51,7 @@ const testimonials = [
     initials: "KM",
   },
   {
-    quote: "Endlich muss ich nicht mehr zwischen ChatGPT und Claude wechseln. Gerki hat beides – und kennt meine Dateien.",
+    quote: "Gerki liest mir morgens die Nachrichten vor und findet in Sekunden die Dokumente die ich brauche. Das spart mir täglich über eine Stunde.",
     author: "Sandra B.",
     role: "Selbstständige Designerin",
     initials: "SB",

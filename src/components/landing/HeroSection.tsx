@@ -30,7 +30,7 @@ export default function HeroSection() {
           }}
         >
           <span className="w-2 h-2 rounded-full inline-block animate-pulse" style={{ background: "var(--accent)" }} />
-          8 spezialisierte KI-Agenten · 14 Tage kostenlos testen
+          Sprachassistent + 8 Agenten · lokal &amp; offline · 14 Tage kostenlos
         </div>
 
         {/* Headline */}

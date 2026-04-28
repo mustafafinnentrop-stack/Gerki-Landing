@@ -52,14 +52,14 @@ const features = [
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <circle cx="12" cy="8" r="4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M20 21a8 8 0 10-16 0" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M12 14v7m3-4l-3 4-3-4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 2a3 3 0 013 3v7a3 3 0 01-6 0V5a3 3 0 013-3z" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M19 10v2a7 7 0 01-14 0v-2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 19v3M9 22h6" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Für Selbstständige & KMU",
-    description: "Endlich eine KI, die Sie für Kundendaten bedenkenlos einsetzen können. Keine Betriebsgeheimnisse in fremden Servern — alles bleibt Ihres.",
-    highlight: "Geschätsgeheimnis sicher",
+    title: "Sprachassistent (Jarvis Mode)",
+    description: "Vollbild Voice-Interface mit animierter Gerki-Orb. Sie sprechen, Gerki versteht und antwortet per Stimme — TTS und STT laufen komplett lokal, kein Internet nötig.",
+    highlight: "Lokal & offline",
     comingSoon: false,
   },
   {
@@ -69,10 +69,34 @@ const features = [
         <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Ollama — offline KI",
-    description: "Effiziente KI-Modelle, die auf normalen PCs laufen. Kein GPU-Monster nötig — auch ältere Rechner schaffen es.",
-    highlight: "Offline-ready",
+    title: "Morgen-Routine",
+    description: "Gerki begrüßt Sie täglich und liest automatisch vor: Wetter (Open-Meteo), aktuelle Nachrichten (RSS) und Ihre Kalender-Termine — kein API-Key nötig.",
+    highlight: "Täglich automatisch",
     comingSoon: false,
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <rect x="2" y="3" width="20" height="14" rx="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8 21h8m-4-4v4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M9 8h6M9 11h4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    title: "OS-Vollzugriff",
+    description: "Gerki öffnet Apps, verwaltet Dateien und führt Shell-Befehle aus. 3-stufiges Sicherheitssystem: sicher → 1-Klick → Warn-Dialog — Sie haben immer die Kontrolle.",
+    highlight: "3-stufige Sicherheit",
+    comingSoon: false,
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    title: "Cloud-Konnektoren",
+    description: "Google Drive, OneDrive und Dropbox optional verbinden — als DSGVO-konformes Opt-In. Sie entscheiden explizit was synchronisiert wird.",
+    highlight: "Coming Soon",
+    comingSoon: true,
   },
   {
     icon: (
