@@ -17,13 +17,12 @@ const features = [
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <circle cx="12" cy="12" r="3" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Alle KI-Modelle",
-    description: "Claude von Anthropic, ChatGPT von OpenAI – und mehr. Sie wählen welches Modell für welche Aufgabe. Alles in einer Oberfläche.",
-    highlight: "Claude + ChatGPT",
+    title: "Privat & offline",
+    description: "Die KI läuft komplett auf Ihrem Rechner — kein Tracking, keine Datenweitergabe, kein Internet nötig.",
+    highlight: "Kein Tracking",
     comingSoon: false,
   },
   {
@@ -34,7 +33,7 @@ const features = [
       </svg>
     ),
     title: "Dateizugriff",
-    description: "Gerki durchsucht Ihre Ordner, liest Dokumente und findet das Richtige automatisch. Keine manuelle Suche mehr.",
+    description: "Gerki durchsucht Ihre Ordner, liest Dokumente und findet das Richtige automatisch. Alle Dateien bleiben lokal — keine Übermittlung.",
     highlight: "Lokale Dateien",
     comingSoon: false,
   },
@@ -45,34 +44,59 @@ const features = [
         <path d="M8 21h8m-4-4v4" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Skill-Bibliothek",
-    description: "Erweitern Sie Gerki mit Fach-Skills: Behördenpost, Buchhaltung, Recht, HR und mehr. Wie ein App Store für KI-Fähigkeiten.",
-    highlight: "40+ Skills verfügbar",
+    title: "Spezialisierte Agenten",
+    description: "Behördenpost, HR, Recht, Buchhaltung — 8 Agenten für die häufigsten Aufgaben. Keine Cloud-APIs nötig, alles lokal.",
+    highlight: "8 Agenten",
     comingSoon: false,
   },
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <circle cx="12" cy="8" r="4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M20 21a8 8 0 10-16 0" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M12 14v7m3-4l-3 4-3-4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 2a3 3 0 013 3v7a3 3 0 01-6 0V5a3 3 0 013-3z" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M19 10v2a7 7 0 01-14 0v-2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 19v3M9 22h6" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "KI-Agenten",
-    description: "Spezialisierte Assistenten, die Aufgaben vollständig erledigen. Behördenbrief beantworten, Termin organisieren, Bericht erstellen.",
-    highlight: "Vollständig autonom",
+    title: "Sprachassistent (Jarvis Mode)",
+    description: "Vollbild Voice-Interface mit animierter Gerki-Orb. Sie sprechen, Gerki versteht und antwortet per Stimme — TTS und STT laufen komplett lokal, kein Internet nötig.",
+    highlight: "Lokal & offline",
     comingSoon: false,
   },
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="12" cy="12" r="3" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Made in Germany",
-    description: "Entwickelt in Deutschland für den Mittelstand. Kein eigener API-Key nötig – Llama, Claude & GPT-4 sind im Abo enthalten.",
-    highlight: "Kein API-Key nötig",
+    title: "Morgen-Routine",
+    description: "Gerki begrüßt Sie täglich und liest automatisch vor: Wetter (Open-Meteo), aktuelle Nachrichten (RSS) und Ihre Kalender-Termine — kein API-Key nötig.",
+    highlight: "Täglich automatisch",
     comingSoon: false,
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <rect x="2" y="3" width="20" height="14" rx="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8 21h8m-4-4v4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M9 8h6M9 11h4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    title: "OS-Vollzugriff",
+    description: "Gerki öffnet Apps, verwaltet Dateien und führt Shell-Befehle aus. 3-stufiges Sicherheitssystem: sicher → 1-Klick → Warn-Dialog — Sie haben immer die Kontrolle.",
+    highlight: "3-stufige Sicherheit",
+    comingSoon: false,
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    title: "Cloud-Konnektoren",
+    description: "Google Drive, OneDrive und Dropbox optional verbinden — als freiwilliges Opt-In. Sie entscheiden explizit was synchronisiert wird.",
+    highlight: "Coming Soon",
+    comingSoon: true,
   },
   {
     icon: (
@@ -96,13 +120,13 @@ export default function FeaturesSection() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "var(--primary-light)" }}>
-            Funktionen
+            Warum Gerki anders ist
           </p>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Eine App. Alle Möglichkeiten.
+            Lokal. Privat. Leistungsstark.
           </h2>
           <p className="text-xl max-w-2xl mx-auto" style={{ color: "var(--muted)" }}>
-            Gerki bringt alle KI-Modelle, Ihren PC und spezialisierte Skills in eine einzige Desktop-App.
+            Gerki läuft komplett auf Ihrem Rechner. Keine Cloud, keine API-Kosten, keine monatlichen Abonnements für KI-Dienste.
           </p>
         </div>
 

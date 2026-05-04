@@ -2,8 +2,8 @@ const steps = [
   {
     number: "01",
     title: "Herunterladen & Installieren",
-    description: "Laden Sie Gerki herunter und installieren Sie es wie jede andere App – in unter 2 Minuten. Kein Server, kein IT-Aufwand.",
-    details: ["Windows & Mac verfügbar", "Keine Technik-Kenntnisse nötig", "Setup-Assistent inklusive"],
+    description: "Laden Sie Gerki herunter und installieren Sie es wie jede andere App – in unter 2 Minuten. Ollama (lokale KI) ist schon enthalten.",
+    details: ["Windows & Mac verfügbar", "Kein API-Key nötig", "Setup-Assistent inklusive"],
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M14 3v16M7 13l7 7 7-7" strokeLinecap="round" strokeLinejoin="round" />
@@ -13,9 +13,9 @@ const steps = [
   },
   {
     number: "02",
-    title: "KI-Modelle verbinden",
-    description: "Geben Sie Ihre API-Schlüssel für Claude und/oder ChatGPT ein. Gerki verbindet sich sofort – Sie behalten die volle Kontrolle.",
-    details: ["Claude (Anthropic) verbinden", "ChatGPT (OpenAI) verbinden", "Eigene Ordner freigeben"],
+    title: "Ordner freigeben & Skills wählen",
+    description: "Geben Sie Ordner frei, die Gerki durchsuchen darf. Wählen Sie die Skills aus, die Sie brauchen – alles läuft 100% lokal.",
+    details: ["Dokumente-Ordner freigeben", "Gewünschte Skills aktivieren", "Keine Cloud-Verbindung nötig"],
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.5">
         <circle cx="14" cy="14" r="3" strokeLinecap="round" strokeLinejoin="round" />
@@ -25,9 +25,9 @@ const steps = [
   },
   {
     number: "03",
-    title: "Loslegen & automatisieren",
-    description: "Stellen Sie Fragen, lassen Sie Dokumente suchen, Skills aktivieren. Gerki arbeitet für Sie – auf Ihrem PC, mit Ihren Daten.",
-    details: ["Skills nach Bedarf aktivieren", "Dateien automatisch finden", "Aufgaben delegieren"],
+    title: "Loslegen – Ihre Daten bleiben lokal",
+    description: "Stellen Sie Fragen, lassen Sie Dokumente suchen, delegieren Sie Aufgaben. Alles auf Ihrem PC — kein Internet nötig, kein Tracking.",
+    details: ["Fragen stellen & Agenten starten", "Dokumente automatisch finden", "Ergebnisse exportieren & teilen"],
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M13 2L3 14h9l-1 12 10-12h-9l1-12z" strokeLinecap="round" strokeLinejoin="round" />

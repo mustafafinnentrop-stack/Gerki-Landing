@@ -5,43 +5,51 @@ import { useState } from "react";
 const faqs = [
   {
     question: "Was ist Gerki?",
-    answer: "Gerki ist Ihr persönlicher KI-Assistent für den Büroalltag — mit 8 spezialisierten Agenten für Recht, Buchhaltung, HR, E-Mail, Marketing und mehr. Sie installieren Gerki einmal auf Ihrem Desktop und haben sofort Zugriff auf Assistenten, die Behördenpost verstehen, Verträge prüfen, Dokumente finden und Antworten vorbereiten."
+    answer: "Gerki ist Ihr persönlicher KI-Assistent für den PC — lokal, privat, kein Cloud-Zwang. Er enthält 8 spezialisierte Agenten für Behördenpost, Dokumente, Recht, HR, Buchhaltung, E-Mail und Marketing. Zusätzlich gibt es einen Sprachassistenten (Jarvis Mode), eine Morgen-Routine (Wetter, News, Kalender), Dateizugriff auf Ihren PC und OS-Vollzugriff zum Steuern von Apps und Dateien — alles ohne Internet-Pflicht.",
   },
   {
     question: "Welche KI-Agenten sind in Gerki enthalten?",
-    answer: "Je nach Plan stehen 2, 5 oder alle 8 Agenten zur Verfügung: Behördenpost-Assistent, Dokumente-Assistent, Rechtsberater, HR-Assistent, Buchhaltungs-Assistent, E-Mail-Manager, Marketing-Assistent und Vertriebsassistent. Jeder Agent ist auf seinen Bereich spezialisiert — kein generischer Chatbot."
+    answer: "Gerki hat 8 spezialisierte Agenten: Allgemein-Assistent, Behördenpost-Assistent, Dokumenten-Assistent, Rechtsberater, Buchhaltungs-Assistent, E-Mail-Manager, HR-Assistent und Marketing-Assistent. Jeder Agent ist auf seinen Bereich spezialisiert — kein generischer Chatbot.",
   },
   {
-    question: "Was unterscheidet Standard, Pro und Business?",
-    answer: "Standard (39,90€) gibt Ihnen 2 Agenten für Behördenpost und Dokumente — ideal für Privatpersonen und Freelancer. Pro (59,90€) bringt 5 Agenten inkl. E-Mail-Manager, Rechtsberater, HR und Cloud-Sync — für Selbstständige und kleine Teams. Business (89,90€) schaltet alle 8 Agenten frei, erlaubt Top-KI-Modelle und unterstützt Teams."
+    question: "Was unterscheidet Trial, Standard, Pro und Business?",
+    answer: "Der 14-tägige Trial enthält alle Features mit Ollama lokal — kostenlos und ohne Einschränkungen. Standard schaltet erweiterte Skills und Priorität-Support frei. Pro fügt alle Skills sowie die Cloud-Konnektoren (Google Drive, OneDrive, Dropbox) hinzu. Business bringt Team-Features mit mehreren Nutzer-Accounts und einem Admin-Panel. Konkrete Preise werden in Kürze bekannt gegeben.",
   },
   {
     question: "Kann Gerki meine Dateien auf dem PC finden?",
-    answer: "Ja — das ist eine der Kernfunktionen. Sie geben Gerki Zugriff auf bestimmte Ordner (z. B. Dokumente, Downloads). Gerki durchsucht diese Ordner, liest relevante Dateien und nutzt sie im Gespräch. Beispiel: 'Wo ist die Rechnung von der Hausverwaltung?' — Gerki findet sie."
+    answer: "Ja — das ist eine der Kernfunktionen. Sie geben Gerki Zugriff auf bestimmte Ordner (z. B. Dokumente, Downloads). Gerki durchsucht diese Ordner, liest relevante Dateien und nutzt sie im Gespräch. Beispiel: 'Wo ist die Rechnung von der Hausverwaltung?' — Gerki findet sie.",
   },
   {
     question: "Brauche ich Programmierkenntnisse?",
-    answer: "Nein. Gerki ist für alle gemacht — nicht nur für Techniker. Sie installieren die App, richten Ihre Agenten per Klick ein und legen los. Keine Konfiguration, keine Kommandozeile, keine technischen Vorkenntnisse nötig."
+    answer: "Nein. Gerki ist für alle gemacht — nicht nur für Techniker. Sie installieren die App, richten Ihre Agenten per Klick ein und legen los. Keine Konfiguration, keine Kommandozeile, keine technischen Vorkenntnisse nötig.",
   },
   {
-    question: "Was sind Top-KI-Modelle und brauche ich die?",
-    answer: "Im Standard- und Pro-Plan arbeitet Gerki mit einer eingebauten KI — kein extra Abo nötig. Im Business-Plan sind Top-Modelle wie Claude und GPT-4 über Gerkis eigenen API-Zugang inklusive — kein Account bei OpenAI oder Anthropic erforderlich. Monatliche Token-Limits gelten je nach Plan."
+    question: "Welche KI-Modelle unterstützt Gerki?",
+    answer: "Gerki nutzt Ollama als KI-Engine — lokal auf Ihrem Rechner, kein Internet nötig, kein API-Key erforderlich. Unterstützte Modelle: Mistral 7B (4,1 GB, 8 GB RAM — Standard, schnell), Qwen 2.5 14B (8,7 GB, 16 GB RAM — gut für Deutsch & Dokumente), Phi-4 14B (8,9 GB, 16 GB RAM — komplexe Aufgaben), Llama 3.3 70B (43 GB, 32 GB RAM — beste Qualität). Beim ersten Start empfiehlt Gerki automatisch das passende Modell für Ihren Rechner.",
   },
   {
-    question: "Was ist Desktop-Automatisierung (OpenClaw)?",
-    answer: "OpenClaw ist Gerkis Automatisierungs-Engine: Sie kann Ihren Bildschirm lesen, Formulare ausfüllen, in Programmen klicken und Aufgaben selbstständig erledigen. Beispiel: Gerki füllt Ihr Elster-Formular automatisch aus — Sie müssen es nur noch absenden."
+    question: "Was kann Gerki auf meinem PC alles steuern?",
+    answer: "Gerki hat OS-Vollzugriff: Er kann Apps öffnen, URLs starten, Dateien und Ordner anlegen, verschieben, umbenennen und löschen sowie beliebige Shell-Befehle ausführen. Dabei gibt es ein 3-stufiges Sicherheitssystem: sichere Aktionen laufen ohne Dialog, mittlere Aktionen erfordern 1-Klick-Bestätigung, destruktive Aktionen (z. B. Löschen) zeigen einen Warn-Dialog — Sie haben immer die Kontrolle.",
+  },
+  {
+    question: "Was ist der Sprachassistent (Jarvis Mode)?",
+    answer: "Der Jarvis Mode ist ein Vollbild Voice-Interface mit animierter Gerki-Orb. Sie sprechen, Gerki versteht und antwortet per Stimme. TTS (Text-to-Sprache) läuft komplett lokal, deutsche und andere Stimmen sind wählbar. STT (Sprache-zu-Text) nutzt die Web Speech API des Browsers — Sie geben einmalig eine Mikrofonerlaubnis im Browser. Zwischen Voice Mode und Text Mode können Sie jederzeit wechseln.",
+  },
+  {
+    question: "Was ist die Morgen-Routine?",
+    answer: "Gerki begrüßt Sie jeden Morgen und liest automatisch vor: aktuelles Wetter (Temperatur, Bedingungen, Min/Max — via Open-Meteo, kein API-Key nötig), aktuelle Nachrichten (via RSS-Feeds, Standard: Tagesschau, eigene Feeds hinzufügbar) und Ihre heutigen Termine aus dem Kalender. Das Zeitfenster ist konfigurierbar (z. B. 6–11 Uhr) und läuft einmal pro Tag.",
   },
   {
     question: "Was ist N8N und wann kommt die Integration?",
-    answer: "N8N ist ein Automatisierungstool, das über 400 Apps verbindet. Die Gerki-Integration ermöglicht Automatisierungen per Sprache: 'Wenn ich eine neue Kundenanfrage per E-Mail bekomme, füge sie ins CRM ein.' Die Integration ist für Q3 2026 geplant und für alle Pläne verfügbar."
+    answer: "N8N ist ein Automatisierungstool, das über 400 Apps verbindet. Die Gerki-Integration ermöglicht Automatisierungen per Sprache: 'Wenn ich eine neue Kundenanfrage per E-Mail bekomme, füge sie ins CRM ein.' Die Integration ist für Q3 2026 geplant und für alle Pläne verfügbar.",
   },
   {
     question: "Welche Hardware brauche ich?",
-    answer: "Gerki läuft auf jedem normalen Windows- oder Mac-Computer. Kein Server, keine spezielle Hardware. Als Richtwert: 8 GB RAM und eine moderne CPU reichen vollständig aus."
+    answer: "Gerki läuft auf jedem normalen Windows- oder Mac-Computer. Als Richtwert für die KI-Modelle: Mistral 7B benötigt 8 GB RAM und reicht für die meisten Aufgaben. Qwen 2.5 14B und Phi-4 14B brauchen 16 GB RAM für bessere Qualität bei Dokumenten und komplexen Fragen. Llama 3.3 70B liefert die beste Qualität, braucht aber 32 GB RAM. Kein Server, keine spezielle GPU nötig.",
   },
   {
     question: "Kann ich jederzeit kündigen?",
-    answer: "Ja. Alle Pläne sind monatlich kündbar — ohne Mindestlaufzeit. Nach dem 14-tägigen Trial läuft Ihr Abo monatlich, bis Sie es über das Dashboard kündigen. Einzelne Agenten können Sie auch ohne Kündigung des Gesamtplans deaktivieren."
+    answer: "Ja. Alle bezahlten Pläne sind monatlich kündbar — ohne Mindestlaufzeit. Nach dem 14-tägigen Trial läuft Ihr Abo monatlich, bis Sie es über das Dashboard kündigen.",
   },
 ];
 

@@ -10,16 +10,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-sm"
-                style={{ background: "linear-gradient(135deg, #1d6bf3, #00d4aa)" }}
-              >
-                G
-              </div>
+              <img src="/gerki-icon.svg" alt="Gerki" className="w-8 h-8 rounded-lg" />
               <span className="font-bold text-xl">Gerki</span>
             </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
-              8 spezialisierte KI-Agenten für Ihren Büroalltag — immer verfügbar, ohne extra Abos.
+              Lokal. Privat. Intelligent. Kein Abo, keine Cloud, kein Tracking.
             </p>
             {/* Social Links */}
             <div className="flex gap-3">

@@ -64,7 +64,7 @@ export default function DemoSection() {
               </a>
             </div>
             <p className="text-xs mt-4" style={{ color: "var(--muted)" }}>
-              Windows & Mac · Trial erfordert Kreditkarte · Danach 39,90€/Monat (Standard) oder 69,90€/Monat (Business)
+              Windows & Mac · 14 Tage kostenlos — kein API-Key, kein Cloud-Zwang
             </p>
           </div>
         </div>
